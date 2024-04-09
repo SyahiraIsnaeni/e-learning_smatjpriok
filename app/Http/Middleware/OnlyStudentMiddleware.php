@@ -6,6 +6,7 @@ use App\Models\Guru;
 use App\Models\Siswa;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class OnlyStudentMiddleware
@@ -15,14 +16,17 @@ class OnlyStudentMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        $guru = Siswa::find(auth()->id());
-
-        if ($guru && $request->session()->exists("student")) {
+        if ($request->session()->has("siswa")) {
             return $next($request);
         }
 
-        return redirect('/login-siswa');
+        $siswa = Siswa::find(Auth::id());
+        if ($siswa) {
+            return $next($request);
+        }
+
+        return redirect('/');
     }
 }

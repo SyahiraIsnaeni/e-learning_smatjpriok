@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>E-Learning Login Student</title>
+    <title>{{$title}}</title>
     <link rel="icon" href="{{asset("images/logo.png")}}" type="image/png" />
     <!-- <link href="/public/css/output.css" rel="stylesheet" /> -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
@@ -31,7 +31,13 @@
             E-Learning SMA Tanjung Priok
         </h3>
         <div class="text-black mt-6 xl:mt-14">
-            <form action="">
+            @if(isset($error))
+                <div class="rounded-md w-full px-2 py-2 text-[13px] sm:text-sm md:text-[15px] font-normal bg-red-700 text-white mb-4">
+                    <p class="text-center">{{$error}}</p>
+                </div>
+            @endif
+            <form method="post" action="{{route("login-siswa")}}">
+                @csrf
                 <label for="nis" class="font-medium">
                     <p class="text-sm lg:text-base xl:text-lg font-medium">
                         NIS/Email
@@ -39,8 +45,8 @@
                     <input
                         class="mt-1 xl:mt-2 px-3 py-2 xl:py-3 mr-4 border-2 shadow rounded-lg w-full block text-xs lg:text-sm xl:text-base"
                         type="text"
-                        id="nis"
-                        name="nis"
+                        id="emailNis"
+                        name="emailNis"
                         placeholder="Masukkan NIS atau Email"
                     />
                 </label>
@@ -58,15 +64,15 @@
                         placeholder="Masukkan Password"
                     />
                 </label>
+                <button class="text-white font-semibold text-sm lg:text-base w-full" type="submit">
+                    <div
+                        class="px-3 bg-biru-tua mt-6 xl:mt-8 rounded-lg h-8 lg:h-11 transition ease-in-out hover:scale-105 duration-300"
+                    >
+                        <p class="text-center py-1.5 lg:py-2.5">Submit</p>
+                    </div>
+                </button>
             </form>
         </div>
-        <a class="text-white font-semibold text-sm lg:text-base" href="../dashboard/siswa.html">
-            <div
-                class="px-3 bg-biru-tua mt-6 xl:mt-8 rounded-lg h-8 lg:h-11 transition ease-in-out hover:scale-105 duration-300"
-            >
-                <p class="text-center py-1.5 lg:py-2.5">Submit</p>
-            </div>
-        </a>
         <div class="mt-2 lg:mt-3 xl:mt-4">
             <a class="text-black text-xs lg:text-sm" href="../forget-password/siswa.html"
             >Forgot your password?
@@ -77,7 +83,7 @@
             <br />
         </div>
         <div class="lg:mt-1">
-            <a class="text-black text-xs lg:text-sm" href="guru.html"
+            <a class="text-black text-xs lg:text-sm" href="{{route("login-guru")}}"
             >Are you a Teacher?
                 <span class="underline underline-offset-2 font-semibold hover:font-bold hover:text-oren"
                 >Login here</span

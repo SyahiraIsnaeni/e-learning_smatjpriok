@@ -16,9 +16,9 @@ class OnlyGuestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->session()->exists("student")) {
+        if ($request->session()->exists("siswa")) {
             return redirect('/dashboard/siswa');
-        }elseif ($request->session()->exists("teacher")){
+        }elseif ($request->session()->exists("guru")){
             return redirect('/dashboard/guru');
         }
 

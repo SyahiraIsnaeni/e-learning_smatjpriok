@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use App\Models\Guru;
+use App\Models\Siswa;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class OnlyTeacherMiddleware
@@ -14,14 +16,17 @@ class OnlyTeacherMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        $guru = Guru::find(auth()->id());
-
-        if ($guru && $request->session()->exists("teacher")) {
+        if ($request->session()->has("guru")) {
             return $next($request);
         }
 
-        return redirect('/login-guru');
+        $guru = Guru::find(Auth::id());
+        if ($guru) {
+            return $next($request);
+        }
+
+        return redirect('/login/guru');
     }
 }
