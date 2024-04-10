@@ -47,4 +47,25 @@ class GuruServiceTest extends TestCase
 
         $this->assertNull($fetchedGuru);
     }
+
+    public function testGetTeacherByIdSuccessWithEmail()
+    {
+        $result = $this->guruService->getTeacherById('staff@gmail.com');
+
+        $this->assertEquals(2, $result);
+    }
+
+    public function testGetTeacherByIdSuccessWithNip()
+    {
+        $result = $this->guruService->getTeacherById('213');
+
+        $this->assertEquals(2, $result);
+    }
+
+    public function testGetTeacherByIdFailed()
+    {
+        $result = $this->guruService->getTeacherById('nonexistent@example.com');
+
+        $this->assertNull($result);
+    }
 }

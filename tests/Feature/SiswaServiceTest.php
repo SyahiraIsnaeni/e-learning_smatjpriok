@@ -46,4 +46,25 @@ class SiswaServiceTest extends TestCase
 
         $this->assertNull($fetchedSiswa);
     }
+
+    public function testGetStudentByIdSuccessWithEmail()
+    {
+        $result = $this->siswaService->getStudentById('siswa1@gmail.com');
+
+        $this->assertEquals(8, $result);
+    }
+
+    public function testGetStudentByIdSuccessWithNis()
+    {
+        $result = $this->siswaService->getStudentById('2113');
+
+        $this->assertEquals(8, $result);
+    }
+
+    public function testGetStudentByIdFailed()
+    {
+        $result = $this->siswaService->getStudentById('nonexistent@example.com');
+
+        $this->assertNull($result);
+    }
 }
