@@ -37,8 +37,9 @@ class LoginSiswaController extends Controller
         }
 
         if ($this->siswaService->login($emailNis, $password)) {
-            $request->session()->put("siswa", $emailNis);
-            return redirect("/dashboard/siswa");
+            $id = $this->siswaService->getStudentById($emailNis);
+            $request->session()->put("siswa", $id);
+            return redirect("/dashboard/siswa/" . $id);
         }
 
         return response()->view("siswa.login", [

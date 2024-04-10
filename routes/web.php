@@ -24,12 +24,12 @@ Route::controller(\App\Http\Controllers\LoginSiswaController::class)->group(
 
 Route::controller(\App\Http\Controllers\DashboardSiswaController::class)->group(
     function (){
-        Route::get("/dashboard/siswa", "index")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("dashboard-siswa");
+        Route::get("/dashboard/siswa/{id}", "index")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("dashboard-siswa");
     }
 );
 
 Route::controller(\App\Http\Controllers\DashboardGuruController::class)->group(
     function (){
-        Route::get("/dashboard/guru", "index")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("dashboard-guru");
+        Route::get("/dashboard/guru/{id}", "index")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("dashboard-guru");
     }
 );

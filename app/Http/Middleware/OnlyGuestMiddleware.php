@@ -14,12 +14,12 @@ class OnlyGuestMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
         if ($request->session()->exists("siswa")) {
-            return redirect('/dashboard/siswa');
-        }elseif ($request->session()->exists("guru")){
-            return redirect('/dashboard/guru');
+            return redirect()->route('dashboard-siswa', ['id' => $request->session()->get("siswa")]);
+        } elseif ($request->session()->exists("guru")) {
+            return redirect()->route('dashboard-guru', ['id' => $request->session()->get("guru")]);
         }
 
         return $next($request);

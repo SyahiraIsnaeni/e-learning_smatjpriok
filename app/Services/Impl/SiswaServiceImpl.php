@@ -24,4 +24,13 @@ class SiswaServiceImpl implements SiswaService
     {
         return Siswa::find($id);
     }
+
+    public function getStudentById($emailNis): ?int
+    {
+        $siswa = Siswa::where('email', $emailNis)
+            ->orWhere('nis', $emailNis)
+            ->first();
+
+        return $siswa ? $siswa->id : null;
+    }
 }

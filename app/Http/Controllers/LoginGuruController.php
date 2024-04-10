@@ -37,8 +37,9 @@ class LoginGuruController extends Controller
         }
 
         if ($this->guruService->login($emailNip, $password)) {
-            $request->session()->put("guru", $emailNip);
-            return redirect("/dashboard/guru");
+            $id = $this->guruService->getTeacherById($emailNip);
+            $request->session()->put("guru", $id);
+            return redirect("/dashboard/guru/" . $id);
         }
 
         return response()->view("guru.login", [

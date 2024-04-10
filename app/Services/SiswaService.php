@@ -9,4 +9,6 @@ interface SiswaService
     public function login(string $emailNis, string $password):bool;
 
     public function getStudent($id): ?Siswa;
+
+    public function getStudentById($emailNis): ?int;
 }

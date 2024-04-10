@@ -24,4 +24,13 @@ class GuruServiceImpl implements GuruService
         return Guru::find($id);
     }
 
+    public function getTeacherById($emailNip): ?int
+    {
+        $guru = Guru::where('email', $emailNip)
+            ->orWhere('nip', $emailNip)
+            ->first();
+
+        return $guru ? $guru->id : null;
+    }
+
 }
