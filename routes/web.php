@@ -6,6 +6,14 @@ Route::get('/test', function () {
     return view('welcome');
 });
 
+Route::controller(\App\Http\Controllers\LoginAdminController::class)->group(
+    function (){
+        Route::get("/login/admin", "login")->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class])->name("login-admin");
+        Route::post("/login/admin", "doLogin")->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class])->name("login-admin");
+        Route::post("/logout/admin", "logout")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("logout-admin");
+    }
+);
+
 Route::controller(\App\Http\Controllers\LoginGuruController::class)->group(
     function (){
         Route::get("/login/guru", "login")->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class])->name("login-guru");
@@ -31,5 +39,11 @@ Route::controller(\App\Http\Controllers\DashboardSiswaController::class)->group(
 Route::controller(\App\Http\Controllers\DashboardGuruController::class)->group(
     function (){
         Route::get("/dashboard/guru/{id}", "index")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("dashboard-guru");
+    }
+);
+
+Route::controller(\App\Http\Controllers\DashboardAdminController::class)->group(
+    function (){
+        Route::get("/dashboard/admin", "index")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("dashboard-admin");
     }
 );

@@ -14,16 +14,16 @@
 <section class="mt-20 px-8 md:mt-24 lg:mt-28 xl:mt-32">
     <div class="w-1/2 hidden md:block float-left">
         <img
-            class="md:w-[380px] md:mt-5 lg:w-[480px] xl:w-[650px] xl:-mt-3 mx-auto"
-            src="{{asset("images/login-guru.png")}}"
-            alt="Login Teacher"
+            class="md:w-[350px]  md:-mt-5 lg:w-[450px] xl:w-[600px] lg:-mt-16 xl:-mt-24 mx-auto"
+            src="{{asset("images/login-admin.png")}}"
+            alt="Login Admin"
         />
     </div>
     <div class="md:inline-block md:w-1/2 md:px-10 xl:px-20 lg:px-12">
         <h1
             class="text-black font-bold text-3xl lg:text-4xl xl:text-5xl text-center"
         >
-            Teacher Login
+            Admin Login
         </h1>
         <h3
             class="mt-2 lg:mt-3 xl:mt-5 text-black font-semibold text-lg lg:text-xl xl:text-2xl text-center"
@@ -36,18 +36,18 @@
                     <p class="text-center">{{$error}}</p>
                 </div>
             @endif
-            <form method="post" action="{{route("login-guru")}}">
+            <form method="post" action="{{route("login-admin")}}">
                 @csrf
-                <label for="emailNip" class="font-medium">
+                <label for="email" class="font-medium">
                     <p class="text-sm lg:text-base xl:text-lg font-medium">
-                        NIP/Email
+                        Email
                     </p>
                     <input
                         class="mt-1 xl:mt-2 px-3 py-2 xl:py-3 mr-4 border-2 shadow rounded-lg w-full block text-xs lg:text-sm xl:text-base"
                         type="text"
-                        id="emailNip"
-                        name="emailNip"
-                        placeholder="Masukkan NIP atau Email"
+                        id="email"
+                        name="email"
+                        placeholder="Masukkan Email"
                     />
                 </label>
                 <label for="password" class="font-medium text-2xl">
@@ -73,23 +73,14 @@
                 </button>
             </form>
         </div>
-
         <div class="mt-2 lg:mt-3 xl:mt-4">
-            <a class="text-black text-xs lg:text-sm" href="../forget-password/guru.html"
+            <a class="text-black text-xs lg:text-sm" href="../forget-password/admin.html"
             >Forgot your password?
                 <span class="underline underline-offset-2 font-semibold hover:font-bold hover:text-oren"
                 >Click here</span
                 ></a
             >
             <br />
-        </div>
-        <div class="lg:mt-1">
-            <a class="text-black text-xs lg:text-sm" href="{{route("login-siswa")}}"
-            >Are you a Student?
-                <span class="underline underline-offset-2 font-semibold hover:font-bold hover:text-oren"
-                >Login here</span
-                ></a
-            >
         </div>
     </div>
 </section>

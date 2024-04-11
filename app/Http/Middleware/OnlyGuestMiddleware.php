@@ -20,6 +20,8 @@ class OnlyGuestMiddleware
             return redirect()->route('dashboard-siswa', ['id' => $request->session()->get("siswa")]);
         } elseif ($request->session()->exists("guru")) {
             return redirect()->route('dashboard-guru', ['id' => $request->session()->get("guru")]);
+        }elseif ($request->session()->exists("admin")) {
+            return redirect()->route('dashboard-admin');
         }
 
         return $next($request);
