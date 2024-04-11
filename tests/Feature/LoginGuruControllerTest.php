@@ -8,13 +8,38 @@ use Tests\TestCase;
 
 class LoginGuruControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function testLoginView()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('login-guru'));
 
         $response->assertStatus(200);
+        $response->assertViewIs('guru.login');
+    }
+
+    public function testDoLoginWithInvalidCredentials()
+    {
+        $response = $this->post(route('login-guru'), [
+            'emailNip' => 'invalid@example.com',
+            'password' => 'invalidpassword'
+        ]);
+
+        $response->assertViewIs("guru.login");
+    }
+
+    public function testDoLoginWithValidCredentials()
+    {
+        $response = $this->post(route('login-guru'), [
+            'emailNip' => 'staf@gmail.com',
+            'password' => '212'
+        ]);
+
+        $response->assertRedirect('/dashboard/guru/1');
+    }
+
+    public function testLogout()
+    {
+        $response = $this->post(route('logout-guru'));
+
+        $response->assertRedirect('/login/guru');
     }
 }

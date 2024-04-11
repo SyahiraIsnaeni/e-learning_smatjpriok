@@ -8,13 +8,38 @@ use Tests\TestCase;
 
 class LoginSiswaControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function testLoginView()
     {
-        $response = $this->get('/');
+        $response = $this->get(route('login-siswa'));
 
         $response->assertStatus(200);
+        $response->assertViewIs('siswa.login');
+    }
+
+    public function testDoLoginWithInvalidCredentials()
+    {
+        $response = $this->post(route('login-siswa'), [
+            'emailNip' => 'invalid@example.com',
+            'password' => 'invalidpassword'
+        ]);
+
+        $response->assertViewIs("siswa.login");
+    }
+
+    public function testDoLoginWithValidCredentials()
+    {
+        $response = $this->post(route('login-siswa'), [
+            'emailNis' => 'siswa1@gmail.com',
+            'password' => '2113'
+        ]);
+
+        $response->assertRedirect('/dashboard/siswa/8');
+    }
+
+    public function testLogout()
+    {
+        $response = $this->post(route('logout-siswa'));
+
+        $response->assertRedirect('/');
     }
 }
