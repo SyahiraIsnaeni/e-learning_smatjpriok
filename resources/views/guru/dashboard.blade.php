@@ -123,7 +123,7 @@
 <!-- SELAMAT DATANG -->
 <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
     <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">
-        Selamat Datang Syahira
+        Selamat Datang {{$guru->nama}}
     </h1>
     <p
         class="font-medium leading-relaxed text-[14px] md:text-[15px] lg:text-base xl:text-lg mt-2 xl:mt-3"
@@ -137,135 +137,33 @@
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
         <h1 class="font-semibold text-[16.5px] xl:text-[18px]">My Courses</h1>
         <div class="mt-3 xl:mt-4">
-            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-6">
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#8C3E44] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Matematika Wajib
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XI IPS 2</p>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-6" id="mapel-list">
+                @foreach($mapels as $mapel)
+                    <a href="../course-detail/guru.html">
+                        <div class="rounded-md border border-black border-opacity-30 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg">
+                            <div class="rounded-t-md w-full h-[140px]"></div>
+                            <div class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30">
+                                <h1 class="text-[15px] xl:text-base font-medium">
+                                    {{ $mapel['nama_mapel'] }}
+                                </h1>
+                                <p class="mt-1.5 text-[13.5px] xl:text-sm">{{ $mapel['nama_kelas'] }}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 mt-4 sm:mt-0 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#8E7258] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Matematika Minat
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XI IPA 4</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 mt-4 sm:mt-0 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#EE982B] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Sosiologi
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XII IPS 1</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 mt-4 sm:mt-0 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#00A791] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Sejarah Minat
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XI IPS 4</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 mt-4 sm:mt-0 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#8C3E44] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Matematika Wajib
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XI IPS 2</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 mt-4 sm:mt-0 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#8E7258] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Matematika Minat
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XI IPA 4</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 mt-4 sm:mt-0 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#EE982B] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Sosiologi
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XII IPS 1</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="../course-detail/guru.html">
-                    <div
-                        class="rounded-md border border-black border-opacity-30 mt-4 sm:mt-0 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
-                    >
-                        <div class="bg-[#00A791] rounded-t-md w-full h-[140px]"></div>
-                        <div
-                            class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30"
-                        >
-                            <h1 class="text-[15px] xl:text-base font-medium">
-                                Sejarah Minat
-                            </h1>
-                            <p class="mt-1.5 text-[13.5px] xl:text-sm">XI IPS 4</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                @endforeach
             </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var colors = ['#8C3E44', '#8E7258', '#EE982B', '#00A791'];
+                    var items = document.querySelectorAll('#mapel-list .rounded-t-md');
+
+                    items.forEach(function(item) {
+                        var randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        item.style.backgroundColor = randomColor;
+                    });
+                });
+            </script>
         </div>
     </div>
 </section>
