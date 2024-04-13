@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\MataPelajaran;
 use App\Services\GuruService;
-use App\Services\MataPelajaranService;
+use App\Services\MataPelajaranGuruService;
 use Tests\TestCase;
 
 class MataPelajaranServiceTest extends TestCase
@@ -14,7 +14,7 @@ class MataPelajaranServiceTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->mapelService = app(MataPelajaranService::class);
+        $this->mapelService = app(MataPelajaranGuruService::class);
     }
 
     public function testGetMapelForGivenGuruId()

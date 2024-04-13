@@ -856,6 +856,14 @@ video {
   width: 2.25rem;
 }
 
+.w-1\/3{
+  width: 33.333333%;
+}
+
+.w-2\/3{
+  width: 66.666667%;
+}
+
 .max-w-2xl{
   max-width: 42rem;
 }
@@ -1238,6 +1246,10 @@ video {
 
 .text-center{
   text-align: center;
+}
+
+.text-end{
+  text-align: end;
 }
 
 .font-learn{
@@ -1764,6 +1776,10 @@ video {
     margin-top: -4rem;
   }
 
+  .lg\:mt-8{
+    margin-top: 2rem;
+  }
+
   .lg\:h-11{
     height: 2.75rem;
   }
@@ -2003,6 +2019,10 @@ video {
 
   .xl\:mt-\[2\.5px\]{
     margin-top: 2.5px;
+  }
+
+  .xl\:mt-12{
+    margin-top: 3rem;
   }
 
   .xl\:w-\[600px\]{

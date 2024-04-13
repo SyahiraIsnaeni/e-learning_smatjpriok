@@ -48,12 +48,12 @@
             id="mobileMenu"
         >
             <a
-                href="siswa.html"
+                href="{{route("dashboard-siswa", $siswa->id)}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren font-bold underline underline-offset-8 decoration-2 decoration-oren"
             >Dashboard</a
             >
             <a
-                href="../courses/siswa.html"
+                href="{{route("course-siswa", $siswa->id)}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >My Courses</a
             >
@@ -92,14 +92,14 @@
         <div
             class="justify-evenly flex my-auto text-white font-medium text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] lg:tracking-normal xl:tracking-normal"
         >
-            <a href="siswa.html">
+            <a href="{{route("dashboard-siswa", $siswa->id)}}">
                 <p
                     class="hover:text-oren font-bold underline underline-offset-8 decoration-2 decoration-oren"
                 >
                     Dashboard
                 </p>
             </a>
-            <a href="../courses/siswa.html">
+            <a href="{{route("course-siswa", $siswa->id)}}">
                 <p class="hover:text-oren">My Courses</p>
             </a>
             <a href="../profile/siswa.html">
@@ -132,7 +132,7 @@
 <!-- SELAMAT DATANG -->
 <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
     <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">
-        Selamat Datang Syahira
+        Selamat Datang {{$siswa->nama}}
     </h1>
     <p
         class="font-medium text-[14px] md:text-[15px] lg:text-base xl:text-lg mt-2 xl:mt-3"

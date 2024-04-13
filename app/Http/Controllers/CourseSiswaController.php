@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guru;
-use App\Services\MataPelajaranGuruService;
+use App\Models\Siswa;
+use App\Services\MataPelajaranSiswaService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class DashboardGuruController extends Controller
+class CourseSiswaController extends Controller
 {
     protected $mapelService;
 
-    public function __construct(MataPelajaranGuruService $mataPelajaranService)
+    public function __construct(MataPelajaranSiswaService $mataPelajaranService)
     {
         $this->mapelService = $mataPelajaranService;
     }
 
     public function index($id): Response
     {
-        $guru = Guru::findOrFail($id);
+        $siswa = Siswa::findOrFail($id);
         $mapels = $this->mapelService->getMapel($id);
         return response()
-            ->view("guru.dashboard", [
-                "title" => "Dashboard Guru E-Learning SMA Tanjung Priok",
-                "guru" => $guru,
+            ->view("siswa.courses", [
+                "title" => "Course Siswa",
+                "siswa" => $siswa,
                 "mapels" => $mapels
             ]);
     }

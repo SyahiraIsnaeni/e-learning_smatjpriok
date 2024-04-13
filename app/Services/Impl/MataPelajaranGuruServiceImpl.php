@@ -3,9 +3,9 @@
 namespace App\Services\Impl;
 
 use App\Models\Guru;
-use App\Services\MataPelajaranService;
+use App\Services\MataPelajaranGuruService;
 
-class MataPelajaranServiceImpl implements MataPelajaranService
+class MataPelajaranGuruServiceImpl implements MataPelajaranGuruService
 {
 
     public function getMapel($guruId)

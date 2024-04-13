@@ -47,3 +47,9 @@ Route::controller(\App\Http\Controllers\DashboardAdminController::class)->group(
         Route::get("/dashboard/admin", "index")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("dashboard-admin");
     }
 );
+
+Route::controller(\App\Http\Controllers\CourseSiswaController::class)->group(
+    function (){
+        Route::get("/courses/siswa/{id}", "index")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa");
+    }
+);

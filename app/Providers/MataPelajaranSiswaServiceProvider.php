@@ -2,20 +2,20 @@
 
 namespace App\Providers;
 
-use App\Services\Impl\MataPelajaranServiceImpl;
-use App\Services\MataPelajaranService;
+use App\Services\Impl\MataPelajaranSiswaServiceImpl;
+use App\Services\MataPelajaranSiswaService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class MataPelajaranServiceProvider extends ServiceProvider implements  DeferrableProvider
+class MataPelajaranSiswaServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public array $singletons = [
-        MataPelajaranService::class => MataPelajaranServiceImpl::class
+        MataPelajaranSiswaService::class => MataPelajaranSiswaServiceImpl::class
     ];
 
     public function provides(): array
     {
-        return [MataPelajaranService::class];
+        return [MataPelajaranSiswaService::class];
     }
 
     public function register(): void

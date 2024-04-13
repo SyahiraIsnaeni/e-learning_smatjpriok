@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-interface MataPelajaranService
+interface MataPelajaranGuruService
 {
 
     public function getMapel($guruId);
