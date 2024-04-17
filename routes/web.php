@@ -53,3 +53,15 @@ Route::controller(\App\Http\Controllers\CourseSiswaController::class)->group(
         Route::get("/courses/siswa/{id}", "index")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa");
     }
 );
+
+Route::controller(\App\Http\Controllers\CourseDetailSiswaController::class)->group(
+    function (){
+        Route::get("/courses/detail/{mapelId}/siswa/{siswaId}", "index")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa-detail");
+    }
+);
+
+Route::controller(\App\Http\Controllers\CourseDetailGuruController::class)->group(
+    function (){
+        Route::get("/courses/detail/{mapelId}/guru/{guruId}", "index")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-detail");
+    }
+);

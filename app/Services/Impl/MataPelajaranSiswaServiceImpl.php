@@ -19,6 +19,7 @@ class MataPelajaranSiswaServiceImpl implements MataPelajaranSiswaService
         $formattedMapels = $mapels->map(function ($mapel) use ($kelas) {
             return [
                 'nama_mapel' => $mapel->nama,
+                'mapel_id'=> $mapel->id,
                 'nama_guru' => $mapel->guru->nama,
                 'nama_kelas' => $kelas->nama_kelas
             ];

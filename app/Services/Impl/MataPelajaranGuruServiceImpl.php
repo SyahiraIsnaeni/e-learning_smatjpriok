@@ -13,7 +13,8 @@ class MataPelajaranGuruServiceImpl implements MataPelajaranGuruService
         return Guru::find($guruId)->mapel->map(function ($mapel) {
             return [
                 'nama_mapel' => $mapel->nama,
-                'nama_kelas' => $mapel->kelas->nama_kelas
+                'nama_kelas' => $mapel->kelas->nama_kelas,
+                'mapel_id' => $mapel->id
             ];
         });
     }

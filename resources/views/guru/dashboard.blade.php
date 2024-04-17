@@ -47,7 +47,7 @@
             id="mobileMenu"
         >
             <a
-                href="guru.html"
+                href="{{route("dashboard-guru", $guru->id)}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren font-bold underline underline-offset-8 decoration-2 decoration-oren"
             >Dashboard</a
             >
@@ -86,7 +86,7 @@
         <div
             class="justify-evenly flex my-auto text-white font-medium text-[13.5px] lg:text-[14.5px] xl:text-[15.5px] lg:tracking-normal xl:tracking-normal"
         >
-            <a href="guru.html">
+            <a href="{{route("dashboard-guru", $guru->id)}}">
                 <p
                     class="hover:text-oren font-bold underline underline-offset-8 decoration-2 decoration-oren"
                 >
@@ -139,7 +139,7 @@
         <div class="mt-3 xl:mt-4">
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-6" id="mapel-list">
                 @foreach($mapels as $mapel)
-                    <a href="../course-detail/guru.html">
+                    <a href="{{route("course-guru-detail", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
                         <div class="rounded-md border border-black border-opacity-30 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg">
                             <div class="rounded-t-md w-full h-[140px]"></div>
                             <div class="px-3.5 lg:px-5 py-3.5 w-full border-t border-t-black border-opacity-30">

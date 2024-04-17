@@ -133,7 +133,7 @@
         <div class="lg:mt-8 xl:mt-10 mt-6">
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-6">
                 @foreach($mapels as $mapel)
-                <a href="../course-detail/siswa.html">
+                <a href="{{route("course-siswa-detail", ['mapelId' => $mapel['mapel_id'], 'siswaId' => $siswa->id])}}">
                     <div
                         class="rounded-md border border-black border-opacity-30 transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
                     >
