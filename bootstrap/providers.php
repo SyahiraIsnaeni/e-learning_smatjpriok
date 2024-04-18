@@ -9,7 +9,7 @@ return [
     App\Providers\MataPelajaranDetailSiswaServiceProvider::class,
     App\Providers\MataPelajaranGuruServiceProvider::class,
     App\Providers\MataPelajaranSiswaServiceProvider::class,
-    App\Providers\MateriServiceProvider::class,
+    App\Providers\MateriGuruServiceProvider::class,
     App\Providers\MateriSiswaServiceProvider::class,
     App\Providers\SiswaServiceProvider::class,
 ];

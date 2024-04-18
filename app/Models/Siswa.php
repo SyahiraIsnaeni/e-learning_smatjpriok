@@ -19,4 +19,12 @@ class Siswa extends Model
     public function kelas(): BelongsTo{
         return $this->belongsTo(Kelas::class, "kelas_id", "id");
     }
+
+    public function materi()
+    {
+        return $this->belongsToMany(Materi::class)
+            ->using(MateriSiswa::class)
+            ->withPivot('is_read')
+            ->withTimestamps();
+    }
 }

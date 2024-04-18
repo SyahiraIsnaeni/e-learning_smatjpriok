@@ -2,21 +2,21 @@
 
 namespace App\Providers;
 
-use App\Services\Impl\MateriServiceImpl;
-use App\Services\MateriService;
+use App\Services\Impl\MateriGuruServiceImpl;
+use App\Services\MateriGuruService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class MateriServiceProvider extends ServiceProvider implements DeferrableProvider
+class MateriGuruServiceProvider extends ServiceProvider implements DeferrableProvider
 {
 
     public array $singletons = [
-        MateriService::class => MateriServiceImpl::class
+        MateriGuruService::class => MateriGuruServiceImpl::class
     ];
 
     public function provides(): array
     {
-        return [MateriService::class];
+        return [MateriGuruService::class];
     }
 
     public function register(): void

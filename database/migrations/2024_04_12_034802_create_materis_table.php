@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('materis', function (Blueprint $table) {
-            $table->id();
+            $table->id()->nullable(false)->primary();
+            $table->string("judul")->nullable(false);
+            $table->text("deskripsi")->nullable(false);
+            $table->string("gambar")->nullable(true);
+            $table->string("dokumen")->nullable(true);
+            $table->unsignedBigInteger("mapel_id")->nullable(false);
+            $table->foreign("mapel_id")->references("id")->on("mapel");
             $table->timestamps();
         });
     }
