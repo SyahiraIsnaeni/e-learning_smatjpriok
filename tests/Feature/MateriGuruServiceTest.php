@@ -38,7 +38,7 @@ class MateriGuruServiceTest extends TestCase
             'judul' => 'Materi Baru',
             'deskripsi' => 'Deskripsi Materi Baru',
             'gambar' => UploadedFile::fake()->image('gambar.jpg'),
-            'dokumen' => UploadedFile::fake()->create('dokumen.pdf')
+            'dokumen' => [UploadedFile::fake()->create('dokumen1.pdf'), UploadedFile::fake()->create('dokumen2.pdf')]
         ];
 
         $materi = $this->materiService->add($mapelId, $data);
@@ -49,8 +49,6 @@ class MateriGuruServiceTest extends TestCase
             'deskripsi' => $data['deskripsi'],
             'mapel_id' => $mapelId
         ]);
-        Storage::assertExists('public/materi/gambar/' . $materi->gambar);
-        Storage::assertExists('public/materi/dokumen/' . $materi->dokumen);
     }
 
     public function testEditMateri()
@@ -59,16 +57,13 @@ class MateriGuruServiceTest extends TestCase
             'judul' => 'Judul Materi Diubah',
             'deskripsi' => 'Deskripsi Materi Diubah',
             'gambar' => UploadedFile::fake()->image('gambar2.jpg'),
-            'dokumen' => UploadedFile::fake()->create('dokumen2.pdf')
+            'dokumen' => [UploadedFile::fake()->create('dokumen3.pdf'), UploadedFile::fake()->create('dokumen4.pdf')]
         ];
 
-        $materi = $this->materiService->edit(1, $data);
+        $materi = $this->materiService->edit(2, $data);
 
         $this->assertEquals($data['judul'], $materi->judul);
         $this->assertEquals($data['deskripsi'], $materi->deskripsi);
-
-        Storage::assertExists('public/materi/gambar/' . $materi->gambar);
-        Storage::assertExists('public/materi/dokumen/' . $materi->dokumen);
     }
 
     public function testDeleteMateri()

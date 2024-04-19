@@ -16,6 +16,7 @@ class MataPelajaranDetailGuruServiceImpl implements MataPelajaranDetailGuruServi
         return [
             'nama_kelas' => $kelas->nama_kelas,
             'nama_mapel' => $mapel->nama,
+            'mapel_id' => $mapel->id,
         ];
     }
 }

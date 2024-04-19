@@ -65,3 +65,15 @@ Route::controller(\App\Http\Controllers\CourseDetailGuruController::class)->grou
         Route::get("/courses/detail/{mapelId}/guru/{guruId}", "index")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-detail");
     }
 );
+
+Route::controller(\App\Http\Controllers\MateriGuruController::class)->group(
+    function (){
+        Route::get("/courses/material/{mapelId}/guru/{guruId}", "materi")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-material");
+        Route::get("/courses/add/material/{mapelId}/guru/{guruId}", "add")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("add-guru-material");
+        Route::post("/courses/add/material/{mapelId}/guru/{guruId}", "addDataMateri")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("add-guru-data-material");
+        Route::get("/courses/{mapelId}/material/{materiId}/guru/{guruId}", "detailMateri")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-guru-material");
+        Route::get("/courses/{mapelId}/edit/material/{materiId}/guru/{guruId}", "edit")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-material");
+        Route::post("/courses/{mapelId}/edit/material/{materiId}/guru/{guruId}", "editDataMateri")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-data-material");
+        Route::delete("/courses/{mapelId}/delete/material/{materiId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-material");
+    }
+);

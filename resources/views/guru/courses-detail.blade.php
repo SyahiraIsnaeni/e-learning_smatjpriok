@@ -67,11 +67,12 @@
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
-            <a
-                href="../login/guru.html"
-                class="text-white py-2.5 block text-center text-sm hover:text-oren"
-            >Logout</a
-            >
+            <form action="{{ route('logout-guru') }}" method="post" style="display: flex; justify-content: center; align-items: center;">
+                @csrf
+                <button type="submit" class="text-center items-center text-white py-2.5 block text-sm hover:text-oren">
+                    Logout
+                </button>
+            </form>
             <!-- Tambahkan navigasi lainnya sesuai kebutuhan -->
         </div>
     </div>
@@ -101,9 +102,12 @@
             <a href="#">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
-            <a href="../login/guru.html">
-                <p class="hover:text-oren">Logout</p>
-            </a>
+            <form action="{{ route('logout-guru') }}" method="post">
+                @csrf
+                <button type="submit">
+                    <span class="hover:text-oren">Logout</span>
+                </button>
+            </form>
         </div>
     </div>
 
@@ -134,7 +138,7 @@
     >
         <!-- Materi Pelajaran -->
         <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:scale-105">
-            <a href="../materi/list-materi/guru.html">
+            <a href="{{route("course-guru-material", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
                 <div class="bg-[#49CA94] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-80">
                     <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Materi Pelajaran</h1>
                     <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">

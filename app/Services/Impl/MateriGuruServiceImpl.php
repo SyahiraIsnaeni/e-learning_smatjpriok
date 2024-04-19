@@ -2,6 +2,7 @@
 
 namespace App\Services\Impl;
 
+use App\Models\DokumenMateri;
 use App\Models\Materi;
 use App\Services\MateriGuruService;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,6 +16,11 @@ class MateriGuruServiceImpl implements MateriGuruService
         return Materi::where('mapel_id', $mapelId)
             ->orderBy('created_at', 'desc')
             ->get();
+    }
+
+    public function getDetail($materiId)
+    {
+        return Materi::where('id', $materiId)->first();
     }
 
 
@@ -34,16 +40,20 @@ class MateriGuruServiceImpl implements MateriGuruService
             $materi->gambar = $namaFile;
         }
 
-        if (isset($data['dokumen'])) {
-            $originalName = $data['dokumen']->getClientOriginalName();
-            $namaFile = pathinfo($originalName, PATHINFO_FILENAME);
-            $extension = $data['dokumen']->getClientOriginalExtension();
-            $namaFile = Str::slug($namaFile, '_') . '_' . time() . '.' . $extension;
-            $dokumenPath = $data['dokumen']->storeAs('public/materi/dokumen', $namaFile);
-            $materi->dokumen = $namaFile;
-        }
-
         $materi->save();
+
+        if (isset($data['dokumen'])) {
+            foreach ($data['dokumen'] as $doc) {
+                $originalName = $doc->getClientOriginalName();
+                $extension = $doc->getClientOriginalExtension();
+                $namaFile = Str::slug(pathinfo($originalName, PATHINFO_FILENAME), '_') . '_' . time() . '.' . $extension;
+                $dokumenPath = $doc->storeAs('public/materi/dokumen', $namaFile);
+                $dokumenMateri = new DokumenMateri();
+                $dokumenMateri->dokumen = $namaFile;
+                $dokumenMateri->materi_id = $materi->id;
+                $dokumenMateri->save();
+            }
+        }
 
         return $materi;
     }
@@ -68,16 +78,23 @@ class MateriGuruServiceImpl implements MateriGuruService
         }
 
         if (isset($data['dokumen'])) {
-            if ($materi->dokumen) {
-                Storage::delete('public/materi/dokumen/' . $materi->dokumen);
+            foreach ($materi->dokumen as $doc) {
+                if (!in_array($doc->dokumen, $data['dokumen'])) {
+                    Storage::delete('public/materi/dokumen/' . $doc->image);
+                    $doc->delete();
+                }
             }
 
-            $originalName = $data['dokumen']->getClientOriginalName();
-            $namaFile = Str::slug(pathinfo($originalName, PATHINFO_FILENAME), '_');
-            $extension = $data['dokumen']->getClientOriginalExtension();
-            $namaFile = $namaFile . '_' . time() . '.' . $extension;
-            $dokumenPath = $data['dokumen']->storeAs('public/materi/dokumen', $namaFile);
-            $materi->dokumen = $namaFile;
+            foreach ($data['dokumen'] as $doc) {
+                $originalName = $doc->getClientOriginalName();
+                $extension = $doc->getClientOriginalExtension();
+                $namaFile = Str::slug(pathinfo($originalName, PATHINFO_FILENAME), '_') . '_' . time() . '.' . $extension;
+                $imagePath = $doc->storeAs('public/materi/dokumen', $namaFile);
+                $dokumenMateri = new DokumenMateri();
+                $dokumenMateri->dokumen = $namaFile;
+                $dokumenMateri->materi_id = $materi->id;
+                $dokumenMateri->save();
+            }
         }
 
         $materi->save();
@@ -88,8 +105,15 @@ class MateriGuruServiceImpl implements MateriGuruService
     public function delete($materiId)
     {
         $materi = Materi::findOrFail($materiId);
+        foreach ($materi->dokumen as $doc) {
+            Storage::delete('public/materi/dokumen/' . $doc->dokumen);
+            $doc->delete();
+        }
+
+        $materi->materiSiswa()->delete();
+
         Storage::delete('public/materi/gambar/' . $materi->gambar);
-        Storage::delete('public/materi/dokumen/' . $materi->dokumen);
+
         $materi->delete();
     }
 }
