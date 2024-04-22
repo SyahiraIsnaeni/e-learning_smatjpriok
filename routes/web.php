@@ -77,3 +77,10 @@ Route::controller(\App\Http\Controllers\MateriGuruController::class)->group(
         Route::delete("/courses/{mapelId}/delete/material/{materiId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-material");
     }
 );
+
+Route::controller(\App\Http\Controllers\MateriSiswaController::class)->group(
+    function (){
+        Route::get("/courses/material/{mapelId}/siswa/{siswaId}", "materi")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa-material");
+        Route::get("/courses/{mapelId}/detail/material/{materiId}/siswa/{siswaId}", "detail")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-siswa-material");
+    }
+);

@@ -4,6 +4,8 @@ namespace App\Services\Impl;
 
 use App\Models\DokumenMateri;
 use App\Models\Materi;
+use App\Models\MateriSiswa;
+use App\Models\Siswa;
 use App\Services\MateriGuruService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -53,6 +55,18 @@ class MateriGuruServiceImpl implements MateriGuruService
                 $dokumenMateri->materi_id = $materi->id;
                 $dokumenMateri->save();
             }
+        }
+
+        $siswa = Siswa::whereHas('kelas.mapel', function ($query) use ($mapelId) {
+            $query->where('id', $mapelId);
+        })->get();
+
+        foreach ($siswa as $student) {
+            $materiSiswa = new MateriSiswa();
+            $materiSiswa->materi_id = $materi->id;
+            $materiSiswa->siswa_id = $student->id;
+            $materiSiswa->is_read = false;
+            $materiSiswa->save();
         }
 
         return $materi;

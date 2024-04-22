@@ -12,6 +12,12 @@ class MataPelajaranDetailSiswaServiceImpl implements MataPelajaranDetailSiswaSer
     {
         $mapel = MataPelajaran::find($mapelId);
 
-        return $mapel->nama;
+        $kelas = $mapel->kelas;
+
+        return [
+            'nama_kelas' => $kelas->nama_kelas,
+            'nama_mapel' => $mapel->nama,
+            'mapel_id' => $mapel->id,
+        ];
     }
 }

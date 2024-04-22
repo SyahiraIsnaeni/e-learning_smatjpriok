@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\MataPelajaran;
 use App\Services\Impl\MataPelajaranDetailGuruServiceImpl;
+use App\Services\MataPelajaranDetailGuruService;
 use App\Services\MateriGuruService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class MateriGuruController extends Controller
     protected $materiService;
     protected $mapelService;
 
-    public function __construct(MateriGuruService $materiService, MataPelajaranDetailGuruServiceImpl $mapelService)
+    public function __construct(MateriGuruService $materiService, MataPelajaranDetailGuruService $mapelService)
     {
         $this->materiService = $materiService;
         $this->mapelService = $mapelService;

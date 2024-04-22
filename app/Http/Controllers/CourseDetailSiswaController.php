@@ -22,7 +22,7 @@ class CourseDetailSiswaController extends Controller
         $siswa = Siswa::findOrFail($siswaId);
         $mapel = $this->mapelService->getMapelDetail($mapelId);
         return response()
-            ->view("siswa.courses-detail.blade.php", [
+            ->view("siswa.courses-detail", [
                 "title" => "Course Detail Siswa",
                 "siswa" => $siswa,
                 "mapel" => $mapel
