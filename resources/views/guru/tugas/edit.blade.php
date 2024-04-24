@@ -37,7 +37,7 @@
     <!-- TAMPILAN HP -->
     <div class="md:hidden relative">
         <div class="ml-5 sm:ml-8 flex items-center">
-            <img src="../../../assets/logo.png" class="w-10 my-auto" />
+            <img src="{{asset("images/logo.png")}}" class="w-10 my-auto" />
             <h1
                 class="font-medium text-sm text-white block my-auto ml-2 tracking-normal"
             >
@@ -141,7 +141,7 @@
     <div class="sm:flex mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
         <div>
             <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">
-                {{$judul}}
+                Edit Tugas {{$mapel["nama_mapel"]}}
             </h1>
             <h1
                 class="font-semibold text-[15px] lg:text-[17px] xl:text-lg mt-1.5 lg:mt-2.5 xl:mt-3"
@@ -149,7 +149,7 @@
                 {{$mapel["nama_kelas"]}}
             </h1>
         </div>
-        <a href="{{route("course-guru-material", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}" class="hidden sm:block ml-auto">
+        <a href="{{route("course-guru-assignment", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}" class="hidden sm:block ml-auto">
             <div
                 class="bg-[#EE982B] py-2 px-3 lg:py-2 xl:py-2.5 lg:px-4 xl:px-6 rounded-md flex transition ease-in-out hover:scale-105 duration-300"
             >
@@ -175,14 +175,14 @@
 <!-- FORM TAMBAH MATERI -->
 <section class="text-black mt-8 xl:mt-12 mb-10">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
-        <form method="post" enctype="multipart/form-data" action="{{ route('add-guru-data-material', ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
+        <form action="{{ route('edit-guru-data-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $tugas->id, 'guruId' => $guru->id])}}" method="post" enctype="multipart/form-data">
             @csrf
             <label for="judul" class="lg:flex">
                 <div class="lg:w-1/4">
                     <p
                         class="text-[13.5px] lg:text-[15px] xl:text-base mt-3 xl:mt-4 font-medium"
                     >
-                        Judul Materi
+                        Judul Tugas
                     </p>
                 </div>
                 <div class="lg:w-3/4">
@@ -191,7 +191,8 @@
                         type="text"
                         id="judul"
                         name="judul"
-                        placeholder="Masukkan Judul Materi"
+                        placeholder="Masukkan Judul Tugas"
+                        value="{{$tugas->judul}}"
                     />
                 </div>
             </label>
@@ -206,7 +207,7 @@
                 </div>
                 <div class="form-group lg:w-3/4" style="margin-top: 10px">
                     <textarea id="inp_editor1" name="deskripsi">
-                                                 &lt;p&gt;&lt;/p&gt;
+                                                 &lt;p&gt;{{$tugas->deskripsi}}&lt;/p&gt;
                                                 </textarea>
                     <script>
                         var editor1 = new RichTextEditor("#inp_editor1");
@@ -214,37 +215,38 @@
                 </div>
             </label>
 
-            <label for="gambar" class="lg:flex mt-5 lg:mt-8">
+            <label for="deadline" class="lg:flex mt-5">
                 <div class="lg:w-1/4">
                     <p
-                        class="text-[13.5px] lg:text-[15px] xl:text-base font-medium mt-3 lg:mt-0"
+                        class="text-[13.5px] lg:text-[15px] xl:text-base font-medium mt-3 xl:mt-4"
                     >
-                        Gambar (opsional)
+                        Tenggat/Deadline
                     </p>
                 </div>
-                <div class="lg:w-3/4">
+                <div class="md:w-[300px]">
                     <input
-                        class="text-[12.5px] mt-1.5 lg:mt-0"
-                        type="file"
-                        id="gambar"
-                        name="gambar"
-                        accept="image/*"
+                        class="mt-1.5 xl:mt-2 px-3 py-2 lg:py-2.5 mr-4 border-2 rounded-md w-full block text-[12.5px] lg:text-sm xl:text-[15px] lg:placeholder:text-[13.5px] xl:placeholder:text-sm"
+                        type="datetime-local"
+                        id="deadline"
+                        name="deadline"
+                        placeholder="Pilih Tanggal dan Waktu"
+                        value="{{$tugas->deadline}}"
                     />
                 </div>
             </label>
 
-            <div class="lg:flex mt-4 lg:mt-6">
+            <div class="lg:flex mt-3 lg:mt-7">
                 <div class="lg:w-1/4">
                     <h1
-                        class="block text-[13.5px] lg:text-[15px] xl:text-base font-medium mt-3 lg:mt-0.5 mb-1 lg:mb-0"
+                        class="block text-[13.5px] lg:text-[15px] xl:text-base font-medium mt-3 lg:mt-0 mb-1 lg:mb-0"
                     >
                         Dokumen (opsional)
                     </h1>
                 </div>
-                <div class="lg:w-3/4">
+                <div class="lg:w-3/4 mt-2.5 lg:mt-0">
                     <label
                         for="dokumen"
-                        class="text-[12.5px] cursor-pointer text-black bg-gray-100 px-1 py-0.5 rounded-sm border-black border-[0.5px]"
+                        class="text-[12.5px] cursor-pointer text-black bg-gray-100 px-1.5 py-1 md:px-2 md:py-2 rounded-md border-black border-opacity-45 border-[0.5px]"
                     >
                         Choose Files
                     </label>
@@ -253,13 +255,15 @@
                         type="file"
                         id="dokumen"
                         name="dokumen[]"
-                        accept=".pdf, .docx, .doc, .odt, .xls, .xlsx"
                         multiple
                         onchange="updateSelectedFiles(this)"
                     />
 
                     <!-- Display selected files -->
-                    <div id="selected-files" class="text-sm text-gray-700 mt-1"></div>
+                    <div
+                        id="selected-files"
+                        class="text-sm text-gray-700 mt-2.5"
+                    ></div>
 
                     <!-- Display file count info -->
                     <span

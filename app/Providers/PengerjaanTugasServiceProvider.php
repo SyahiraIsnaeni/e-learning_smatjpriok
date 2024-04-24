@@ -2,20 +2,21 @@
 
 namespace App\Providers;
 
-use App\Services\Impl\SiswaServiceImpl;
-use App\Services\SiswaService;
+use App\Services\Impl\PengerjaanTugasServiceImpl;
+use App\Services\PengerjaanTugasService;
+use App\Services\TugasService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class SiswaServiceProvider extends ServiceProvider implements DeferrableProvider
+class PengerjaanTugasServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public array $singletons = [
-        SiswaService::class => SiswaServiceImpl::class
+        PengerjaanTugasService::class => PengerjaanTugasServiceImpl::class
     ];
 
     public function provides(): array
     {
-        return [SiswaService::class];
+        return [PengerjaanTugasService::class];
     }
 
     public function register(): void

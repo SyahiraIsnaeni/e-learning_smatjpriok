@@ -11,6 +11,8 @@ return [
     App\Providers\MataPelajaranSiswaServiceProvider::class,
     App\Providers\MateriGuruServiceProvider::class,
     App\Providers\MateriSiswaServiceProvider::class,
+    App\Providers\PengerjaanTugasServiceProvider::class,
     App\Providers\SiswaServiceProvider::class,
+    App\Providers\TugasServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 ];

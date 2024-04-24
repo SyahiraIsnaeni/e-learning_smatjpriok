@@ -167,7 +167,7 @@
 
         <!-- Tugas -->
         <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:scale-105">
-            <a href="../tugas/list-tugas/guru.html">
+            <a href="{{route("course-guru-assignment", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
                 <div class="mt-5 md:mt-0 bg-[#71B9DE] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-80">
                     <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Tugas</h1>
                     <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">

@@ -94,7 +94,7 @@ class MateriGuruServiceImpl implements MateriGuruService
         if (isset($data['dokumen'])) {
             foreach ($materi->dokumen as $doc) {
                 if (!in_array($doc->dokumen, $data['dokumen'])) {
-                    Storage::delete('public/materi/dokumen/' . $doc->image);
+                    Storage::delete('public/materi/dokumen/' . $doc->gambar);
                     $doc->delete();
                 }
             }
