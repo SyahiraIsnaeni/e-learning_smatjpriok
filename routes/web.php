@@ -96,3 +96,12 @@ Route::controller(\App\Http\Controllers\TugasGuruController::class)->group(
         Route::delete("/courses/{mapelId}/delete/assignment/{tugasId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-assignment");
     }
 );
+
+Route::controller(\App\Http\Controllers\TugasSiswaController::class)->group(
+    function (){
+        Route::get("/courses/assignment/{mapelId}/siswa/{siswaId}", "tugas")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa-assignment");
+        Route::get("/courses/{mapelId}/detail/assignment/{pengerjaanTugasId}/siswa/{siswaId}", "detail")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-siswa-assignment");
+        Route::post("/courses/{mapelId}/detail/assignment/{pengerjaanTugasId}/siswa/{siswaId}", "addTugas")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("add-siswa-assignment");
+        Route::delete("/courses/{mapelId}/detail/assignment/{pengerjaanTugasId}/siswa/{siswaId}", "deleteDokumen")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("delete-siswa-assignment");
+    }
+);

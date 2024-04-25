@@ -28,4 +28,9 @@ class PengerjaanTugas extends Model
     {
         return $this->belongsTo(Siswa::class, "siswa_id", "id");
     }
+
+    public function dokumenTugasSiswa(): HasMany
+    {
+        return $this->hasMany(DokumenTugasSiswa::class, 'pengerjaan_tugas_id', 'id');
+    }
 }

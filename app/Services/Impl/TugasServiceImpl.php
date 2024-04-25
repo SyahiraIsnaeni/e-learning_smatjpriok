@@ -99,22 +99,32 @@ class TugasServiceImpl implements TugasService
     {
         $tugas = Tugas::findOrFail($tugasId);
 
-        foreach ($tugas->dokumenPengerjaanTugas() as $doc) {
-            Storage::delete('public/pengerjaan-tugas/dokumen/' . $doc->dokumen);
-            $doc->delete();
+        // Hapus dokumen tugas siswa terlebih dahulu
+        foreach ($tugas->pengerjaanTugas as $pengerjaanTugas) {
+            if ($pengerjaanTugas->dokumenTugasSiswa) {
+                foreach ($pengerjaanTugas->dokumenTugasSiswa as $doc) {
+                    Storage::delete('public/tugas/siswa/dokumen/' . $doc->dokumen);
+                    $doc->delete();
+                }
+            }
         }
 
+        // Hapus pengerjaan tugas
         foreach ($tugas->pengerjaanTugas as $pengerjaanTugas) {
             $pengerjaanTugas->delete();
         }
 
+        // Hapus dokumen tugas
         foreach ($tugas->dokumen as $doc) {
             Storage::delete('public/tugas/dokumen/' . $doc->dokumen);
             $doc->delete();
         }
 
+        // Akhirnya, hapus tugas itu sendiri
         $tugas->delete();
     }
+
+
 
     public function addNilai($pengerjaanId, array $data)
     {
