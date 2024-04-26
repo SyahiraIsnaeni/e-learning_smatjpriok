@@ -215,13 +215,13 @@
                 <p
                     class="text-xs sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px] font-normal mt-2 sm:mt-0 sm:ml-auto"
                 >
-                    Total Pengumpulan: {{$total}}
+                    Total Pengumpulan: {{count($tugas->pengerjaanTugas)}}
                 </p>
             </div>
             <!-- TAMPILAN HP -->
             <div class="mt-5 md:hidden">
                 @foreach($tugas->pengerjaanTugas as $row)
-                    <a href="../penilaian-tugas/guru.html">
+                    <a href="{{route('detail-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}">
                         <div
                             class="mt-3 py-3 px-3 flex bg-[#E6F4F1] rounded-md border border-black border-opacity-20 transition hover:-translate-y-0.5 hover:shadow-md hover:duration-200"
                         >
@@ -247,48 +247,48 @@
             <!-- TAMPILAN TABLET - LAPTOP -->
             <div class="mt-6 hidden md:block">
                 @foreach($tugas->pengerjaanTugas as $row)
-                @if($total != 0)
-                        <div
-                            class="mt-3 py-3 lg:py-3.5 px-5 lg:px-10 xl:px-16 flex bg-[#E6F4F1] rounded-md border border-black border-opacity-20"
-                        >
-                            <p
-                                class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4"
+                    @if(count($tugas->pengerjaanTugas) != 0)
+                            <div
+                                class="mt-3 py-3 lg:py-3.5 px-5 lg:px-10 xl:px-16 flex bg-[#E6F4F1] rounded-md border border-black border-opacity-20"
                             >
-                                {{$row->siswa->nama}}
-                            </p>
-                            <p
-                                class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
-                            >
-                                {{$row->status}}
-                            </p>
-                            <p
-                                class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
-                            >
-                                {{ $row->updated_at->format('d/m/Y, \p\u\k\u\l H:i') }}
-                            </p>
-                            <a
-                                href="../penilaian-tugas/guru.html"
-                                class="flex justify-end ml-auto hover:text-[#D78010] hover:font-semibold"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512"
-                                    class="h-4 w-6 mt-0.5 fill-current hover:text-orange-500"
-                                >
-                                    <path
-                                        d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"
-                                    />
-                                </svg>
                                 <p
-                                    class="underline text-[13px] lg:text-[13.5px] xl:text-sm ml-0.5 font-medium"
+                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4"
                                 >
-                                    Lihat Tugas
+                                    {{$row->siswa->nama}}
                                 </p>
-                            </a>
-                        </div>
-                @elseif($total == 0)
-                    <p class="mt-3 font-medium text-xs sm:text-[13px] lg:text-[13.5px] xl:text-sm">Belum ada pengumpulan tugas</p>
-                @endif
+                                <p
+                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
+                                >
+                                    {{$row->status}}
+                                </p>
+                                <p
+                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
+                                >
+                                    {{ $row->updated_at->format('d/m/Y, \p\u\k\u\l H:i') }}
+                                </p>
+                                <a
+                                    href="{{route('detail-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}"
+                                    class="flex justify-end ml-auto hover:text-[#D78010] hover:font-semibold"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 576 512"
+                                        class="h-4 w-6 mt-0.5 fill-current hover:text-orange-500"
+                                    >
+                                        <path
+                                            d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"
+                                        />
+                                    </svg>
+                                    <p
+                                        class="underline text-[13px] lg:text-[13.5px] xl:text-sm ml-0.5 font-medium"
+                                    >
+                                        Lihat Tugas
+                                    </p>
+                                </a>
+                            </div>
+                    @else
+                        <p class="mt-3 font-medium text-xs sm:text-[13px] lg:text-[13.5px] xl:text-sm">Belum ada pengumpulan tugas</p>
+                    @endif
                 @endforeach
             </div>
         </div>

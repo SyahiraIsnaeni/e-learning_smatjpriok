@@ -17,4 +17,6 @@ interface TugasService
     public function addNilai($pengerjaanId, array $data);
 
     public function alreadySubmit($pengerjaanId);
+
+    public function getAssignDetail($pengerjaanId);
 }

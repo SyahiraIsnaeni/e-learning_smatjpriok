@@ -9,6 +9,8 @@ use App\Models\PengerjaanTugas;
 use App\Models\Siswa;
 use App\Models\Tugas;
 use App\Services\PengerjaanTugasService;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -17,13 +19,17 @@ class PengerjaanTugasServiceImpl implements PengerjaanTugasService
 
     public function get($mapelId, $studentId)
     {
-        return Tugas::whereHas('pengerjaanTugas', function ($query) use ($studentId) {
-            $query->where('siswa_id', $studentId);
-        })
+        $tugas = Tugas::with(['pengerjaanTugas' => function ($query) use ($studentId) {
+            $query->select('id', 'status', 'siswa_id');
+        }])
             ->where('mapel_id', $mapelId)
             ->orderBy('created_at', 'desc')
             ->get();
+
+
+        return $tugas;
     }
+
 
     public function getDetail($tugasId, $siswaId)
     {
@@ -46,7 +52,7 @@ class PengerjaanTugasServiceImpl implements PengerjaanTugasService
         $pengerjaanTugas = $tugas->pengerjaanTugas()->where('siswa_id', $siswaId)->first();
 
         $deadline = $tugas->deadline;
-        $currentTime = now();
+        $currentTime = Carbon::now('Asia/Jakarta');
         $status = $currentTime > $deadline ? 'telat dikumpulkan' : 'dikumpulkan';
 
         if (isset($data['dokumen'])) {
@@ -59,11 +65,13 @@ class PengerjaanTugasServiceImpl implements PengerjaanTugasService
                 $dokumenTugas = new DokumenTugasSiswa();
                 $dokumenTugas->dokumen = $namaFile;
                 $dokumenTugas->pengerjaan_tugas_id = $pengerjaanTugas->id;
+                $dokumenTugas->updated_at = Carbon::now('Asia/Jakarta');
                 $dokumenTugas->save();
             }
         }
 
         $pengerjaanTugas->status = $status;
+        $pengerjaanTugas->updated_at = Carbon::now('Asia/Jakarta');
         $pengerjaanTugas->save();
     }
 
@@ -82,6 +90,7 @@ class PengerjaanTugasServiceImpl implements PengerjaanTugasService
         }
 
         $pengerjaanTugas->status = "belum dikumpulkan";
+        $pengerjaanTugas->updated_at = Carbon::now('Asia/Jakarta');
         $pengerjaanTugas->save();
     }
 

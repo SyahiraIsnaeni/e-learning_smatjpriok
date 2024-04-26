@@ -3,10 +3,12 @@
 namespace App\Services\Impl;
 
 use App\Models\DokumenTugas;
+use App\Models\DokumenTugasSiswa;
 use App\Models\PengerjaanTugas;
 use App\Models\Siswa;
 use App\Models\Tugas;
 use App\Services\TugasService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -33,6 +35,8 @@ class TugasServiceImpl implements TugasService
         $tugas->deskripsi = $data['deskripsi'];
         $tugas->deadline = $data['deadline'];
         $tugas->mapel_id = $mapelId;
+        $tugas->created_at = Carbon::now('Asia/Jakarta');
+        $tugas->updated_at = Carbon::now('Asia/Jakarta');
 
         $tugas->save();
 
@@ -69,6 +73,7 @@ class TugasServiceImpl implements TugasService
         $tugas->judul = $data['judul'];
         $tugas->deskripsi = $data['deskripsi'];
         $tugas->deadline = $data['deadline'];
+        $tugas->updated_at = Carbon::now('Asia/Jakarta');
 
         if (isset($data['dokumen'])) {
             foreach ($tugas->dokumen as $doc) {
@@ -125,12 +130,33 @@ class TugasServiceImpl implements TugasService
     }
 
 
-
     public function addNilai($pengerjaanId, array $data)
     {
         $tugas = PengerjaanTugas::findOrFail($pengerjaanId);
         $tugas->nilai = $data['nilai'];
     }
+
+    public function getAssignDetail($pengerjaanTugasId)
+    {
+        $pengerjaanTugas = PengerjaanTugas::where('id', $pengerjaanTugasId)->get();
+
+        $pengerjaanDetails = [];
+        foreach ($pengerjaanTugas as $pengerjaan) {
+            $siswa = $pengerjaan->siswa;
+            $dokumen = DokumenTugasSiswa::where('pengerjaan_tugas_id', $pengerjaan->id)->get();
+
+            $pengerjaanDetails[] = [
+                'pengerjaanTugas' => $pengerjaan,
+                'siswa' => $siswa,
+                'dokumen' => $dokumen,
+            ];
+        }
+
+        return $pengerjaanDetails;
+    }
+
+
+
 
     public function alreadySubmit($tugasId)
     {

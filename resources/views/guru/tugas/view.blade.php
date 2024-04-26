@@ -194,7 +194,7 @@
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
         @foreach($tugas as $row)
             <a href="{{route('detail-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}">
-                <div class="relative bg-white-first">
+                <div class="relative mt-2 lg:mt-3 bg-white-first">
                     <div
                         class="bg-white flex bg-opacity-90 shadow px-3 py-3 lg:py-4 rounded-lg border border-black border-opacity-25 hover:bg-gray-100 hover:shadow-md cursor-pointer"
                     >

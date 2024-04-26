@@ -143,10 +143,28 @@ class TugasGuruController extends Controller
         }
     }
 
-    public function delete($mapelId, $materiId, $guruId): Response|RedirectResponse
+    public function delete($mapelId, $tugasId, $guruId): Response|RedirectResponse
     {
-        $this->tugasService->delete($materiId);
+        $this->tugasService->delete($tugasId);
         Alert::success('Sukses', 'Berhasil Menghapus Data Tugas');
         return redirect()->route('course-guru-assignment', ['mapelId' => $mapelId, 'guruId' => $guruId]);
     }
+
+    public function pengerjaanDetail($mapelId, $tugasId, $guruId): Response|RedirectResponse
+    {
+        $guru = Guru::findOrFail($guruId);
+        $mapel = $this->mapelService->getMapelDetail($mapelId);
+        $tugas = $this->tugasService->getDetail($tugasId);
+        $tugasDetail = $this->tugasService->getAssignDetail($tugasId)->get();
+
+        return response()
+            ->view("guru.tugas.penilaian", [
+                "title" => "Pengerjaan Tugas " . $mapel["nama_mapel"] . " " . $tugasDetail["siswa"]->nama,
+                "guru" => $guru,
+                "mapel" => $mapel,
+                "tugas" => $tugas,
+                "tugasDetail" => $tugasDetail,
+            ]);
+    }
+
 }

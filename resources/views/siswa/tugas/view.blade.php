@@ -149,7 +149,7 @@
         @foreach($tugas as $row)
             <a href="{{route('detail-siswa-assignment', ['mapelId' => $mapel['mapel_id'], 'pengerjaanTugasId' => $row->id, 'siswaId' => $siswa->id])}}">
                 <div
-                    class="bg-white flex bg-opacity-90 shadow px-3 py-3 lg:py-4 rounded-lg border border-black border-opacity-25 transition ease-in-out hover:-translate-y-1.5 duration-300 hover:shadow-md"
+                    class="bg-white mt-2 lg:mt-3 flex bg-opacity-90 shadow px-3 py-3 lg:py-4 rounded-lg border border-black border-opacity-25 transition ease-in-out hover:-translate-y-1.5 duration-300 hover:shadow-md"
                 >
                     <div class="sm:w-2/3 mr-2 sm:mr-5 ml-2 md:ml-3 lg:ml-5 w-full">
                         <!-- TAMPILAN HP -->
@@ -158,27 +158,51 @@
                                 <h1
                                     class="font-bold text-[15px] md:text-[15.5px] lg:text-base"
                                 >
-                                    Limit Tak Hingga
+                                    {{$row->judul}}
                                 </h1>
                                 <p
                                     class="block sm:hidden font-normal text-[11px] lg:text-[13px] mt-1.5"
                                 >
-                                    Diposting: 7 Oktober 2023
+                                    Diposting: {{$row->created_at->format('j F Y')}}
                                 </p>
                                 <p
                                     class="font-normal text-[11px] sm:text-xs lg:text-[13px] mt-0.5 lg:mt-1.5"
                                 >
-                                    Tenggat: 7 Oktober 2023
+                                    Tenggat: {{ \Carbon\Carbon::parse($row->deadline)->format('j F Y, \p\u\k\u\l H:i') }}
                                 </p>
                             </div>
-                            <div class="flex justify-center ml-auto mt-1">
-                                <div
-                                    class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
-                                ></div>
-                                <p class="text-[#A33F46] text-xs font-semibold ml-1">
-                                    Belum Diserahkan
-                                </p>
-                            </div>
+                                @if($row->status == "belum dikumpulkan")
+                                    <div class="flex justify-center ml-auto mt-1">
+                                        <div
+                                            class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
+                                        ></div>
+                                        <p class="text-[#A33F46] text-xs font-semibold ml-1">
+                                            Belum Diserahkan
+                                        </p>
+                                    </div>
+                                @else
+                                    <div class="flex justify-center ml-auto mt-1">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="11"
+                                            width="11"
+                                            viewBox="0 0 448 512"
+                                            class="mt-[2.5px]"
+                                            fill="#008958"
+                                            stroke="#008958"
+                                            stroke-width="40"
+                                        >
+                                            <path
+                                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                                            />
+                                        </svg>
+                                        <p
+                                            class="text-[#008958] text-xs lg:text-[13px] font-semibold ml-[2px] lg:ml-[4px]"
+                                        >
+                                            Sudah Diserahkan
+                                        </p>
+                                    </div>
+                                @endif
                         </div>
 
                         <!-- TAMPILAN TABLET KEATAS -->
@@ -187,40 +211,62 @@
                                 <h1
                                     class="font-bold text-[15px] md:text-[15.5px] lg:text-base"
                                 >
-                                    Limit Tak Hingga
+                                    {{$row->judul}}
                                 </h1>
                                 <p
                                     class="hidden sm:block font-normal text-xs lg:text-[13px] mt-1 ml-1"
                                 >
-                                    | Diposting: 7 Oktober 2023
+                                    | Diposting: {{$row->created_at->format('j F Y')}}
                                 </p>
                             </div>
                             <p
                                 class="font-normal text-[11px] sm:text-xs lg:text-[13px] mt-1 lg:mt-1.5"
                             >
-                                Tenggat: 7 Oktober 2023
+                                Tenggat: {{ \Carbon\Carbon::parse($row->deadline)->format('j F Y, \p\u\k\u\l H:i') }}
                             </p>
                         </div>
                         <p
                             class="text-xs md:text-[12.5px] lg:text-[13.5px] leading-normal mt-1.5 text-justify"
                         >
-                            1.Kerjakan soal pilihan ganda 1-10 buku matematika wajib halaman
-                            120 <br />
-                            2.Kerjakan soal essay 1-5 buku matematika wajib halaman 135
+                            {{ strlen(strip_tags($row->deskripsi)) > 250 ? substr(strip_tags($row->deskripsi), 0, 250) . '...' : strip_tags($row->deskripsi) }}
                         </p>
                     </div>
 
                     <div class="hidden sm:block w-1/3 mt-3 sm:mt-2 lg:mt-1.5 relative">
-                        <div class="flex justify-center">
-                            <div
-                                class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
-                            ></div>
-                            <p
-                                class="text-[#A33F46] text-xs lg:text-[13px] font-semibold ml-1 lg:ml-1.5"
-                            >
-                                Belum Diserahkan
-                            </p>
-                        </div>
+                            @if($row->status == "belum dikumpulkan")
+                                <div class="flex justify-center">
+                                    <div
+                                        class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
+                                    ></div>
+                                    <p
+                                        class="text-[#A33F46] text-xs lg:text-[13px] font-semibold ml-1 lg:ml-1.5"
+                                    >
+                                        Belum Diserahkan
+                                    </p>
+                                </div>
+                            @elseif($row->status == "dikumpulkan" || $row->status == "telat dikumpulkan")
+                                <div class="flex justify-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="11"
+                                        width="11"
+                                        viewBox="0 0 448 512"
+                                        class="mt-[2.5px]"
+                                        fill="#008958"
+                                        stroke="#008958"
+                                        stroke-width="40"
+                                    >
+                                        <path
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                                        />
+                                    </svg>
+                                    <p
+                                        class="text-[#008958] text-xs lg:text-[13px] font-semibold ml-[2px] lg:ml-[4px]"
+                                    >
+                                        Sudah Diserahkan
+                                    </p>
+                                </div>
+                            @endif
                         <div
                             class="flex flex-col items-center left-1/2 transform -translate-x-1/2 absolute bottom-0 mb-3 sm:mb-2 lg:mb-1.5"
                         >

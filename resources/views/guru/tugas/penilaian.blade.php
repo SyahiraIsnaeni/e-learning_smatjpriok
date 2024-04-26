@@ -122,12 +122,12 @@
     <div class="mx-5 sm:mx-8 flex lg:mx-10 xl:mx-20">
         <div>
             <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">
-                Pengumpulan Tugas Limit Tak Hingga
+                Pengumpulan Tugas {{$tugas->judul}}
             </h1>
             <h1
                 class="font-medium text-sm md:text-[15px] lg:text-base xl:text-lg mt-2.5 lg:mt-3.5 xl:mt-3"
             >
-                Matematika Wajib - XI IPS 2
+                {{$mapel["nama_mapel"]}} - {{$mapel["nama_kelas"]}}
             </h1>
         </div>
         <div class="ml-auto">
