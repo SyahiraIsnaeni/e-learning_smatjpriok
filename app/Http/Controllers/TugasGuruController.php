@@ -150,12 +150,12 @@ class TugasGuruController extends Controller
         return redirect()->route('course-guru-assignment', ['mapelId' => $mapelId, 'guruId' => $guruId]);
     }
 
-    public function pengerjaanDetail($mapelId, $tugasId, $guruId): Response|RedirectResponse
+    public function pengerjaanDetail($mapelId, $tugasId, $pengerjaanTugasId, $guruId): Response|RedirectResponse
     {
         $guru = Guru::findOrFail($guruId);
         $mapel = $this->mapelService->getMapelDetail($mapelId);
         $tugas = $this->tugasService->getDetail($tugasId);
-        $tugasDetail = $this->tugasService->getAssignDetail($tugasId)->get();
+        $tugasDetail = $this->tugasService->getAssignDetail($pengerjaanTugasId);
 
         return response()
             ->view("guru.tugas.penilaian", [
@@ -165,6 +165,24 @@ class TugasGuruController extends Controller
                 "tugas" => $tugas,
                 "tugasDetail" => $tugasDetail,
             ]);
+    }
+
+    public function addNilaiSiswa($mapelId, $tugasId, $pengerjaanTugasId, $guruId, Request $request):Response|RedirectResponse
+    {
+        if (($request->input('nilai') == null)) {
+            Alert::error('Gagal', 'Pastikan nilai terisi');
+            return redirect()->back();
+        }
+
+        $data = [
+            'nilai' => $request->input('nilai')
+        ];
+
+        $this->tugasService->addNilai($pengerjaanTugasId, $data);
+
+        Alert::success('Sukses', 'Berhasil Mengunggah Nilai Tugas');
+
+        return redirect()->route('detail-guru-assignment',  ['mapelId' => $mapelId, 'tugasId' => $tugasId, 'guruId' => $guruId]);
     }
 
 }

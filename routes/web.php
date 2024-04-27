@@ -94,7 +94,8 @@ Route::controller(\App\Http\Controllers\TugasGuruController::class)->group(
         Route::get("/courses/{mapelId}/edit/assignment/{tugasId}/guru/{guruId}", "edit")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-assignment");
         Route::post("/courses/{mapelId}/edit/assignment/{tugasId}/guru/{guruId}", "editDataTugas")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-data-assignment");
         Route::delete("/courses/{mapelId}/delete/assignment/{tugasId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-assignment");
-        Route::get("/courses/{mapelId}/detail/assignment/{tugasId}/guru/{guruId}", "pengerjaanDetail")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-penilaian-guru-assignment");
+        Route::get("/courses/{mapelId}/detail/{tugasId}/assignment/{pengerjaanTugasId}/guru/{guruId}", "pengerjaanDetail")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-penilaian-guru-assignment");
+        Route::post("/courses/{mapelId}/detail/post/{tugasId}/assignment/{pengerjaanTugasId}/guru/{guruId}", "addNilaiSiswa")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("add-penilaian-guru-assignment");
     }
 );
 

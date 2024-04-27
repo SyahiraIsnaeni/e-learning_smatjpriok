@@ -221,7 +221,7 @@
             <!-- TAMPILAN HP -->
             <div class="mt-5 md:hidden">
                 @foreach($tugas->pengerjaanTugas as $row)
-                    <a href="{{route('detail-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}">
+                    <a href="{{route('detail-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $tugas->id, 'pengerjaanTugasId' => $row->id, 'guruId' => $guru->id])}}">
                         <div
                             class="mt-3 py-3 px-3 flex bg-[#E6F4F1] rounded-md border border-black border-opacity-20 transition hover:-translate-y-0.5 hover:shadow-md hover:duration-200"
                         >
@@ -252,22 +252,35 @@
                                 class="mt-3 py-3 lg:py-3.5 px-5 lg:px-10 xl:px-16 flex bg-[#E6F4F1] rounded-md border border-black border-opacity-20"
                             >
                                 <p
-                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4"
+                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5"
                                 >
                                     {{$row->siswa->nama}}
                                 </p>
                                 <p
-                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
+                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
                                 >
                                     {{$row->status}}
                                 </p>
                                 <p
-                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
+                                    class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
                                 >
                                     {{ $row->updated_at->format('d/m/Y, \p\u\k\u\l H:i') }}
                                 </p>
+                                @if($row->nilai != null)
+                                    <p
+                                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
+                                    >
+                                        Sudah dinilai
+                                    </p>
+                                @else
+                                    <p
+                                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
+                                    >
+                                        belum dinilai
+                                    </p>
+                                @endif
                                 <a
-                                    href="{{route('detail-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}"
+                                    href="{{route('detail-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $tugas->id, 'pengerjaanTugasId' => $row->id, 'guruId' => $guru->id])}}"
                                     class="flex justify-end ml-auto hover:text-[#D78010] hover:font-semibold"
                                 >
                                     <svg
@@ -294,7 +307,7 @@
         </div>
     </div>
 </section>
-
+@include('sweetalert::alert')
 <!-- COPYRIGHT -->
 <footer class="block inset-x-0 bottom-0 mb-5">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">

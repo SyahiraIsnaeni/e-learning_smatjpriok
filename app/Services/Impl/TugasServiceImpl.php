@@ -134,27 +134,23 @@ class TugasServiceImpl implements TugasService
     {
         $tugas = PengerjaanTugas::findOrFail($pengerjaanId);
         $tugas->nilai = $data['nilai'];
+        $tugas->save();
     }
 
     public function getAssignDetail($pengerjaanTugasId)
     {
-        $pengerjaanTugas = PengerjaanTugas::where('id', $pengerjaanTugasId)->get();
+        $pengerjaanTugas = PengerjaanTugas::findOrFail($pengerjaanTugasId);
 
-        $pengerjaanDetails = [];
-        foreach ($pengerjaanTugas as $pengerjaan) {
-            $siswa = $pengerjaan->siswa;
-            $dokumen = DokumenTugasSiswa::where('pengerjaan_tugas_id', $pengerjaan->id)->get();
+        $siswa = $pengerjaanTugas->siswa;
 
-            $pengerjaanDetails[] = [
-                'pengerjaanTugas' => $pengerjaan,
-                'siswa' => $siswa,
-                'dokumen' => $dokumen,
-            ];
-        }
+        $dokumen = DokumenTugasSiswa::where('pengerjaan_tugas_id', $pengerjaanTugasId)->get();
 
-        return $pengerjaanDetails;
+        return [
+            'pengerjaanTugas' => $pengerjaanTugas,
+            'siswa' => $siswa,
+            'dokumen' => $dokumen,
+        ];
     }
-
 
 
 

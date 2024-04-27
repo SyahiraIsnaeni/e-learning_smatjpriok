@@ -131,7 +131,7 @@
             </h1>
         </div>
         <div class="ml-auto">
-            <a href="../detail-tugas/guru.html" class="hidden sm:block ml-auto">
+            <a href="{{route('detail-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $tugas->id, 'guruId' => $guru->id])}}" class="hidden sm:block ml-auto">
                 <div
                     class="bg-[#EE982B] py-2 px-3 lg:py-2 xl:py-2.5 lg:px-4 xl:px-6 rounded-md flex transition ease-in-out hover:scale-105 duration-300"
                 >
@@ -177,65 +177,82 @@
             <div
                 class="text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[15px] font-medium ml-2"
             >
-                <p>Arif Hidayat Putra</p>
+                <p>{{$tugasDetail["siswa"]->nama}}</p>
                 <div class="mt-2 md:mt-4 lg:mt-5">
-                    <a
-                        href="path/to/your/document.pdf"
-                        download="your-document-name.pdf"
-                        class="underline"
-                    >
-                        <div class="flex py-0.5">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 384 512"
-                                class="w-4 h-4 mt-0.5"
-                            >
-                                <path
-                                    d="M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z"
-                                />
-                            </svg>
-                            <p class="ml-1">Jawaban Arif Hidayat Putra.pdf</p>
-                        </div>
-                    </a>
-                    <a
-                        href="path/to/your/document.pdf"
-                        download="your-document-name.pdf"
-                        class="underline"
-                    >
-                        <div class="flex py-0.5">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 384 512"
-                                class="w-4 h-4 mt-0.5"
-                            >
-                                <path
-                                    d="M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z"
-                                />
-                            </svg>
-                            <p class="ml-1">Jawaban Arif Hidayat Putra.pdf</p>
-                        </div>
-                    </a>
+                    @foreach($tugasDetail["dokumen"] as $row)
+                        <a
+                            href="{{ asset('storage/public/tugas/siswa/dokumen/' . $row->dokumen) }}"
+                            class="underline"
+                        >
+                            <div class="flex py-0.5">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 384 512"
+                                    class="w-4 h-4 mt-0.5"
+                                >
+                                    <path
+                                        d="M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z"
+                                    />
+                                </svg>
+                                <p class="ml-1">{{$row->dokumen}}</p>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
 
-        <div
-            class="mt-5 md:mt-7 flex text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[15px]"
-        >
-            <p class="font-semibold my-auto">Nilai Tugas</p>
-            <input
-                class="ml-4 lg:ml-5 text-center px-3 py-2 xl:py-2.5 mr-4 border-2 border-black border-opacity-25 rounded-md w-[75px] md:w-[80px] block "
-                type="number"
-                id="nilai"
-                name="nilai"
-            />
-            <button class="bg-[#763500] md:ml-3 py-2 px-3 md:py-2.5 md:px-3.5 rounded-md transition ease-in-out hover:scale-105 duration-300">
-                <p class="font-semibold text-white text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px]">Upload Nilai</p>
-            </button>
-        </div>
+        @if($tugasDetail["pengerjaanTugas"]->nilai == null)
+            <form method="post" enctype="multipart/form-data" action="{{route('add-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $tugas->id, 'pengerjaanTugasId' => $tugasDetail["pengerjaanTugas"]->id, 'guruId' => $guru->id])}}">
+                @csrf
+                <div
+                    class="mt-5 md:mt-7 flex text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[15px]"
+                >
+                    <p class="font-semibold my-auto">Nilai Tugas</p>
+                    <input
+                        class="ml-4 lg:ml-5 text-center px-3 py-2 xl:py-2.5 mr-4 border-2 border-black border-opacity-25 rounded-md w-[75px] md:w-[80px] block "
+                        type="number"
+                        id="nilai"
+                        name="nilai"
+                    />
+                    <button type="submit" class="bg-[#763500] md:ml-3 py-2 px-3 md:py-2.5 md:px-3.5 rounded-md transition ease-in-out hover:scale-105 duration-300">
+                        <p class="font-semibold text-white text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px]">Upload Nilai</p>
+                    </button>
+                </div>
+            </form>
+        @else
+            <form method="post" enctype="multipart/form-data" action="{{route('add-penilaian-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $tugas->id, 'pengerjaanTugasId' => $tugasDetail["pengerjaanTugas"]->id, 'guruId' => $guru->id])}}">
+            @csrf
+            <div class="mt-5 md:mt-7 flex text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[15px]">
+                <p class="font-semibold my-auto">Nilai Tugas</p>
+                <input
+                    class="ml-4 lg:ml-5 text-center px-3 py-2 xl:py-2.5 mr-4 border-2 border-black border-opacity-25 rounded-md w-[75px] md:w-[80px] block "
+                    type="number"
+                    id="nilai"
+                    name="nilai"
+                    value="{{$tugasDetail["pengerjaanTugas"]->nilai}}"
+                    disabled
+                />
+                <button type="button" onclick="enableEdit()" id="editButton" class="bg-[#763500] md:ml-3 py-2 px-3 md:py-2.5 md:px-3.5 rounded-md transition ease-in-out hover:scale-105 duration-300">
+                    <p class="font-semibold text-white text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px]">Edit Nilai</p>
+                </button>
+
+                <button type="submit" onclick="uploadNilai()" id="uploadButton" class="bg-[#763500] md:ml-3 py-2 px-3 md:py-2.5 md:px-3.5 rounded-md transition ease-in-out hover:scale-105 duration-300" style="display: none;">
+                    <p class="font-semibold text-white text-[12.5px] sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px]">Upload Nilai</p>
+                </button>
+            </div>
+            <script>
+                function enableEdit() {
+                    document.getElementById("nilai").removeAttribute("disabled");
+                    document.getElementById("uploadButton").style.display = "inline-block";
+                    document.getElementById("editButton").style.display = "none";
+                }
+            </script>
+            </form>
+        @endif
     </div>
 </section>
-
+@include('sweetalert::alert')
 <!-- COPYRIGHT -->
 <footer class="block inset-x-0 bottom-0 mb-5">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
