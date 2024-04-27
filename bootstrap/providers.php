@@ -14,5 +14,9 @@ return [
     App\Providers\PengerjaanTugasServiceProvider::class,
     App\Providers\SiswaServiceProvider::class,
     App\Providers\TugasServiceProvider::class,
+    App\Providers\UjianGuruController::class,
+    App\Providers\UjianServiceProvider::class,
+    App\Providers\UjianSiswaController::class,
+    App\Providers\UjianSiswaServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 ];
