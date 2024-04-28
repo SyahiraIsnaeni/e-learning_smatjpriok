@@ -127,7 +127,7 @@
 <section class="text-black mt-8 xl:mt-12">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
         <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">
-            Tugas {{$mapel["nama_mapel"]}}
+            Ujian {{$mapel["nama_mapel"]}}
         </h1>
         <h1
             class="font-medium text-sm lg:text-base xl:text-lg mt-1.5 lg:mt-2.5 xl:mt-3"
@@ -140,7 +140,7 @@
 <!-- ADD DAN SEARCH -->
 <section class="mt-8 xl:mt-12">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20 flex">
-        <a href="{{route("add-guru-assignment", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
+        <a href="{{route("course-guru-add-examination", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
             <div
                 class="bg-[#763500] rounded-md px-3 py-2.5 xl:py-3 lg:px-4 flex transition ease-in-out hover:scale-105 duration-300"
             >
@@ -158,7 +158,7 @@
                 <p
                     class="ml-1.5 text-xs lg:text-[13px] xl:text-sm font-semibold text-white"
                 >
-                    Tambah Tugas
+                    Tambah Ujian
                 </p>
             </div>
         </a>
@@ -183,17 +183,17 @@
                 type="search"
                 id="search"
                 name="search"
-                placeholder="Cari tugas..."
+                placeholder="Cari Ujian..."
             />
         </label>
     </div>
 </section>
 
-<!-- LIST TUGAS -->
+<!-- LIST UJIAN -->
 <section class="text-black mt-5 mb-10">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
-        @foreach($tugas as $row)
-            <a href="{{route('detail-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}">
+        @foreach($ujian as $row)
+            <a href="{{route('detail-guru-examination', ['mapelId' => $mapel['mapel_id'], 'ujianId' => $row->id, 'guruId' => $guru->id])}}">
                 <div class="relative mt-2 lg:mt-3 bg-white-first">
                     <div
                         class="bg-white flex bg-opacity-90 shadow px-3 py-3 lg:py-4 rounded-lg border border-black border-opacity-25 hover:bg-gray-100 hover:shadow-md cursor-pointer"
@@ -256,10 +256,10 @@
                         id="optionsList{{$row->id}}"
                         class="hidden text-xs lg:text-[12.5px] py-3 bg-white absolute right-0 top-0 border border-black border-opacity-25 mt-12 mr-5 lg:mr-8 p-2 rounded-md shadow-md"
                     >
-                        <a href="{{route('edit-guru-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}">
+                        <a href="{{route('edit-guru-examination', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}">
                             <li class="mb-2 px-4 hover:font-bold">Edit</li>
                         </a>
-                        <form method="post" action="{{route('delete-guru-data-assignment', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}" class="d-inline">
+                        <form method="post" action="{{route('delete-guru-data-examination', ['mapelId' => $mapel['mapel_id'], 'ujianId' => $row->id, 'guruId' => $guru->id])}}" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button >

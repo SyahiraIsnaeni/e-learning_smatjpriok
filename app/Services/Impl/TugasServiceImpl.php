@@ -58,10 +58,10 @@ class TugasServiceImpl implements TugasService
         })->get();
 
         foreach ($siswa as $student) {
-            $materiSiswa = new PengerjaanTugas();
-            $materiSiswa->tugas_id = $tugas->id;
-            $materiSiswa->siswa_id = $student->id;
-            $materiSiswa->save();
+            $tugasSiswa = new PengerjaanTugas();
+            $tugasSiswa->tugas_id = $tugas->id;
+            $tugasSiswa->siswa_id = $student->id;
+            $tugasSiswa->save();
         }
 
         return $tugas;

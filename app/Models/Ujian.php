@@ -28,12 +28,7 @@ class Ujian extends Model
         return $this->hasMany(PertanyaanUjian::class, "ujian_id", "id");
     }
 
-
-    public function dokumen(): HasMany{
-        return $this->hasMany(DokumenUjianGuru::class, "ujian_id", "id");
-    }
-
-    public function jawabanSiswa(): HasMany{
-        return $this->hasMany(JawabanSiswaUjian::class, "ujian_id", "id");
+    public function pengerjaanSiswa(): HasMany{
+        return $this->hasMany(PengerjaanUjianSiswa::class, "ujian_id", "id");
     }
 }

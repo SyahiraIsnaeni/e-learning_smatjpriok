@@ -27,7 +27,7 @@ class PertanyaanUjian extends Model
         return $this->hasMany(OpsiJawabanUjian::class, "pertanyaan_id", "id");
     }
 
-    public function jawabanSiswa(): HasMany{
+    public function jawaban(): HasMany{
         return $this->hasMany(JawabanSiswaUjian::class, "pertanyaan_id", "id");
     }
 }

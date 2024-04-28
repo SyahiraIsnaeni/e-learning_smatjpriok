@@ -101,7 +101,7 @@ class TugasGuruController extends Controller
         $tugas = $this->tugasService->getDetail($tugasId);
         return response()
             ->view("guru.tugas.edit", [
-                "title" => "Edit Materi " . $tugas->judul,
+                "title" => "Edit Tugas " . $tugas->judul,
                 "guru" => $guru,
                 "mapel" => $mapel,
                 "tugas" => $tugas
@@ -134,7 +134,7 @@ class TugasGuruController extends Controller
         try {
             $this->tugasService->edit($tugasId, $data);
 
-            Alert::success('Sukses', 'Berhasil Mengubah Data Materi');
+            Alert::success('Sukses', 'Berhasil Mengubah Data Tugas');
 
             return redirect()->route('course-guru-assignment', ['mapelId' => $mapelId, 'guruId' => $guruId]);
         } catch (\Exception $e) {

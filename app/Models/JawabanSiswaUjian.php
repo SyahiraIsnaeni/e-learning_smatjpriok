@@ -17,15 +17,11 @@ class JawabanSiswaUjian extends Model
 
     protected $primaryKey = "id";
 
-    protected $fillable = ['jawaban', 'nilai', 'status'];
+    protected $fillable = ['jawaban', 'poin'];
 
 
-    public function ujian(): BelongsTo{
-        return $this->belongsTo(Ujian::class, "ujian_id", "id");
-    }
-
-    public function siswa(): BelongsTo{
-        return $this->belongsTo(Siswa::class, "siswa_id", "id");
+    public function pengerjaanUjian(): BelongsTo{
+        return $this->belongsTo(Ujian::class, "pengerjaan_ujian_id", "id");
     }
 
     public function pertanyaan(): BelongsTo{

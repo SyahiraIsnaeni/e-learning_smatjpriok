@@ -15,6 +15,7 @@
             background-color: white !important;
         }
     </style>
+
 </head>
 <body class="bg-biru-muda font-learn">
 <!-- NAVBAR -->
@@ -134,44 +135,16 @@
 <!-- OPTION -->
 <section class="text-black mt-8 md:mt-10 mb-10 xl:mt-12">
     <div
-        class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1 md:gap-5 lg:gap-8"
+        class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20 grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-5 lg:gap-8"
     >
-        <!-- Materi Pelajaran -->
-        <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:scale-105">
-            <a href="{{route("course-guru-material", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
-                <div class="bg-[#49CA94] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-80">
-                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Materi Pelajaran</h1>
-                    <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
-                        Berikan pengalaman belajar inspiratif dengan menyajikan wawasan kepada murid-muridmu!
-                    </p>
-                    <div class="mt-5 xl:mt-7 flex justify-end">
-                        <p class="text-[13px] xl:text-sm font-medium flex">
-                  <span class="underline underline-offset-1">Selengkapnya</span
-                  ><span>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="16"
-                        width="14"
-                        viewBox="0 0 448 512"
-                        class="ml-1 block mt-0.5 xl:mt-[2.5px] xl:ml-1.5"
-                    >
-                      <path
-                          d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                      /></svg
-                    ></span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
 
-        <!-- Tugas -->
+        <!-- Pilihan Ganda -->
         <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:scale-105">
-            <a href="{{route("course-guru-assignment", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
+            <a href="{{route("course-guru-add-multiple-choice", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
                 <div class="mt-5 md:mt-0 bg-[#71B9DE] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-80">
-                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Tugas</h1>
+                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Soal Pilihan Ganda</h1>
                     <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
-                        Ayo rancang perjalanan pembelajaran siswa dengan tugas mendukung perkembangan individual mereka!
+                        Soal pilihan ganda adalah format pertanyaan di mana siswa diberikan beberapa pilihan jawaban, di antaranya salah satunya merupakan jawaban yang benar. Siswa harus memilih jawaban yang menurut mereka paling tepat atau sesuai dengan pertanyaan yang diajukan.
                     </p>
                     <div class="mt-5 xl:mt-7 flex justify-end">
                         <p class="text-[13px] xl:text-sm font-medium flex">
@@ -194,42 +167,14 @@
             </a>
         </div>
 
-        <!-- Ujian -->
-        <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:scale-105">
-            <a href="{{route("course-guru-examination", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
-                <div class="mt-5 md:mt-0 bg-[#EE982B] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-75">
-                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Ujian</h1>
-                    <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
-                        Sediakan evaluasi yang bermakna dengan membuat ujian yang relevan untuk mengukur pemahaman siswa!
-                    </p>
-                    <div class="mt-5 xl:mt-7 flex justify-end">
-                        <p class="text-[13px] xl:text-sm font-medium flex">
-                      <span class="underline underline-offset-1">Selengkapnya</span
-                      ><span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="16"
-                            width="14"
-                            viewBox="0 0 448 512"
-                            class="ml-1 block mt-0.5 xl:mt-[2.5px] xl:ml-1.5"
-                        >
-                          <path
-                              d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                          /></svg
-                        ></span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
 
-        <!-- Jadwal Pelajaran -->
+        <!-- Essai -->
         <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:scale-105">
-            <a href="../ujian/list-ujian/guru.html">
+            <a href="{{route("course-guru-add-essay", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
                 <div class="mt-5 md:mt-0 bg-[#F6F551] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-95">
-                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Jadwal Mengajar</h1>
+                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Soal Essai</h1>
                     <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
-                        Telusuri jadwal lengkapmu merencanakan aktivitas pengajaran dengan lebih baik dan berjalan lancar!
+                        Soal esai adalah format pertanyaan di mana siswa diminta untuk menjawab pertanyaan secara rinci dan menyeluruh dengan menggunakan bahasa sendiri. Siswa akan memberikan argumen, pemikiran, atau analisis mendalam tentang topik yang diberikan.
                     </p>
                     <div class="mt-5 xl:mt-7 flex justify-end">
                         <p class="text-[13px] xl:text-sm font-medium flex">
@@ -253,7 +198,7 @@
         </div>
     </div>
 </section>
-
+@include('sweetalert::alert')
 <!-- COPYRIGHT -->
 <footer class="block inset-x-0 bottom-0 mb-5">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
