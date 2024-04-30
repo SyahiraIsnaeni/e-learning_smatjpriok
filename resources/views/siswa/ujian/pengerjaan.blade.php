@@ -235,6 +235,19 @@
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
+    const form = document.getElementById('examForm');
+    form.addEventListener('submit', function(event) {
+        // Prevent the form from submitting normally
+        event.preventDefault();
+
+        // Clear cookies and remove countdownStarted flag
+        document.cookie = 'countdownStarted=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Hapus cookie countdownStarted
+        document.cookie = 'remainingTime=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Hapus cookie remainingTime
+
+        // Kirim formulir
+        form.submit();
+    });
+
 </script>
 <!-- COPYRIGHT -->
 <footer class="block inset-x-0 bottom-0 mb-5">

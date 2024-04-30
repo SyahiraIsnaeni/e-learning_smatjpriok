@@ -12,14 +12,20 @@ use Carbon\Carbon;
 
 class UjianSiswaServiceImpl implements UjianSiswaService
 {
-    public function get($mapelId, $studentId)
+    public function get($mapelId, $siswaId)
     {
-        $ujian = Ujian::with(['pengerjaanSiswa' => function ($query) use ($studentId) {
-            $query->select('id', 'status', 'siswa_id');
-        }])
-            ->where('mapel_id', $mapelId)
+        $ujian = Ujian::where('mapel_id', $mapelId)
             ->orderBy('created_at', 'desc')
             ->get();
+
+        $ujian->each(function ($ujian) use ($siswaId) {
+            $pengerjaanUjian = PengerjaanUjianSiswa::where('ujian_id', $ujian->id)
+                ->where('siswa_id', $siswaId)
+                ->select('status')
+                ->first();
+
+            $ujian->status = $pengerjaanUjian? $pengerjaanUjian->status : null;
+        });
 
         return $ujian;
     }

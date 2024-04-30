@@ -184,10 +184,27 @@
         >
             <div class="flex">
                 <h1 class="font-bold text-[13.5px] sm:text-sm lg:text-[15px] xl:text-base">Pengumpulan Tugas</h1>
-                <p class="text-xs ml-auto mt-0.5 font-light sm:text-[13px] lg:text-sm xl:text-[14.5px]">{{$tugas["pengerjaanTugas"]->status}}</p>
+                @if($tugas["pengerjaanTugas"]->nilai == null)
+                    <p class="text-xs ml-auto mt-0.5 font-light sm:text-[13px] lg:text-sm xl:text-[14.5px]">{{$tugas["pengerjaanTugas"]->status}}</p>
+                @else
+                    <p class="text-xs ml-auto mt-0.5 font-light sm:text-[13px] lg:text-sm xl:text-[14.5px]">Dinilai</p>
+                @endif
 
             </div>
-            @if($tugas["pengerjaanTugas"]->status == "belum dikumpulkan")
+            @if($tugas["pengerjaanTugas"]->nilai != null)
+                <div class="mt-3">
+                    @foreach($tugas["dokumen"] as $doc)
+                        <a href="{{asset("storage/pubic/tugas/siswa/dokumen" . $doc->dokumen)}}}">
+                            <p class="mt-1.5 text-xs lg:text-sm underline">{{$doc->dokumen && strlen($doc->dokumen) > 30 ? substr($doc->dokumen, 0, 30) . '...' : $doc->dokumen}}</p>
+                        </a>
+                    @endforeach
+                </div>
+                <div
+                    class="mt-5 md:mt-3 lg:mt-4 w-fit bg-[#EEE8A9] border shadow rounded-md border-black border-opacity-25 py-2 md:py-2.5 px-4 md:px-5 lg:px-6"
+                >
+                    <p class="font-semibold text-[12.5px] md:text-[13px] lg:text-[13.5px] xl:text-sm text-center">Nilai : {{$tugas["pengerjaanTugas"]->nilai}}</p>
+                </div>
+            @elseif($tugas["pengerjaanTugas"]->status == "belum dikumpulkan")
             <form method="post" action="{{route('add-siswa-assignment', ['mapelId' => $mapel['mapel_id'], 'pengerjaanTugasId' => $tugas["tugas"]->id, 'siswaId' => $siswa->id])}}" enctype="multipart/form-data">
                 @csrf
                 <div class="mt-3 lg:mt-3">

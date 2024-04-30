@@ -171,14 +171,38 @@
                                     Tenggat: {{ \Carbon\Carbon::parse($row->deadline)->format('j F Y, \p\u\k\u\l H:i') }}
                                 </p>
                             </div>
-                            <div class="flex justify-center ml-auto pl-3 mt-1">
-                                <div
-                                    class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
-                                ></div>
-                                <p class="text-[#A33F46] text-xs font-semibold ml-1">
-                                    Belum Dikerjakan
-                                </p>
-                            </div>
+                            @if($row->status == "belum dikerjakan")
+                                <div class="flex justify-center ml-auto pl-3 mt-1">
+                                    <div
+                                        class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
+                                    ></div>
+                                    <p class="text-[#A33F46] text-xs font-semibold ml-1">
+                                        Belum Dikerjakan
+                                    </p>
+                                </div>
+                            @else
+                                <div class="flex justify-center ml-auto pl-3 mt-1">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        height="11"
+                                        width="11"
+                                        viewBox="0 0 448 512"
+                                        class="mt-[2.5px]"
+                                        fill="#008958"
+                                        stroke="#008958"
+                                        stroke-width="40"
+                                    >
+                                        <path
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                                        />
+                                    </svg>
+                                    <p
+                                        class="text-[#008958] text-xs lg:text-[13px] font-semibold ml-[2px] lg:ml-[4px]"
+                                    >
+                                        Sudah Dikerjakan
+                                    </p>
+                                </div>
+                            @endif
                         </div>
 
                         <!-- TAMPILAN TABLET KEATAS -->
@@ -209,16 +233,40 @@
                     </div>
 
                     <div class="hidden sm:block w-1/3 mt-3 sm:mt-2 lg:mt-1.5 relative">
-                        <div class="flex justify-center">
-                            <div
-                                class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
-                            ></div>
-                            <p
-                                class="text-[#A33F46] text-xs lg:text-[13px] font-semibold ml-1 lg:ml-1.5"
-                            >
-                                Belum Dikerjakan
-                            </p>
-                        </div>
+                        @if($row->status == "belum dikerjakan")
+                            <div class="flex justify-center">
+                                <div
+                                    class="rounded-full w-[7px] h-[7px] bg-[#A33F46] mt-[5px]"
+                                ></div>
+                                <p
+                                    class="text-[#A33F46] text-xs lg:text-[13px] font-semibold ml-1 lg:ml-1.5"
+                                >
+                                    Belum Dikerjakan
+                                </p>
+                            </div>
+                        @else
+                            <div class="flex justify-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    height="11"
+                                    width="11"
+                                    viewBox="0 0 448 512"
+                                    class="mt-[2.5px]"
+                                    fill="#008958"
+                                    stroke="#008958"
+                                    stroke-width="40"
+                                >
+                                    <path
+                                        d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                                    />
+                                </svg>
+                                <p
+                                    class="text-[#008958] text-xs lg:text-[13px] font-semibold ml-[2px] lg:ml-[4px]"
+                                >
+                                    Sudah Dikerjakan
+                                </p>
+                            </div>
+                        @endif
                         <div
                             class="flex flex-col items-center left-1/2 transform -translate-x-1/2 absolute bottom-0 mb-3 sm:mb-2 lg:mb-1.5"
                         >

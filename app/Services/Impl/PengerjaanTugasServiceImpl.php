@@ -19,13 +19,18 @@ class PengerjaanTugasServiceImpl implements PengerjaanTugasService
 
     public function get($mapelId, $studentId)
     {
-        $tugas = Tugas::with(['pengerjaanTugas' => function ($query) use ($studentId) {
-            $query->select('id', 'status', 'siswa_id');
-        }])
-            ->where('mapel_id', $mapelId)
+        $tugas = Tugas::where('mapel_id', $mapelId)
             ->orderBy('created_at', 'desc')
             ->get();
 
+        $tugas->each(function ($tugas) use ($studentId) {
+            $pengerjaanTugas = PengerjaanTugas::where('tugas_id', $tugas->id)
+                ->where('siswa_id', $studentId)
+                ->select('status')
+                ->first();
+
+            $tugas->status = $pengerjaanTugas? $pengerjaanTugas->status : null;
+        });
 
         return $tugas;
     }
