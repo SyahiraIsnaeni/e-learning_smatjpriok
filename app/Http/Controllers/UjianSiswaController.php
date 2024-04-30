@@ -47,7 +47,21 @@ class UjianSiswaController extends Controller
         $ujian = $this->ujianService->getDetail($ujianId, $siswaId);
         return response()
             ->view("siswa.ujian.petunjuk", [
-                "title" => "Tugas " . $ujian['ujian']->judul,
+                "title" => "Ujian " . $ujian['ujian']->judul,
+                "siswa" => $siswa,
+                "mapel" => $mapel,
+                "ujian" => $ujian,
+            ]);
+    }
+
+    public function penilaian($mapelId, $ujianId, $siswaId): Response
+    {
+        $siswa = Siswa::findOrFail($siswaId);
+        $mapel = $this->mapelService->getMapelDetail($mapelId);
+        $ujian = $this->ujianService->getDetail($ujianId, $siswaId);
+        return response()
+            ->view("siswa.ujian.detail-nilai", [
+                "title" => "Penilaian Ujian " . $ujian['ujian']->judul,
                 "siswa" => $siswa,
                 "mapel" => $mapel,
                 "ujian" => $ujian,

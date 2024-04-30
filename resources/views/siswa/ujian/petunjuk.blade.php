@@ -220,7 +220,7 @@
                     </div>
                 </a>
             @else
-                <a href="{{route("begin-siswa-examination", ['mapelId' => $mapel['mapel_id'], 'ujianId' => $ujian['ujian']->id, 'siswaId' => $siswa->id])}}" class="ml-auto">
+                <a href="{{route("detail-penilaian-siswa-examination", ['mapelId' => $mapel['mapel_id'], 'ujianId' => $ujian['ujian']->id, 'siswaId' => $siswa->id])}}" class="ml-auto">
                     <div
                         class="bg-[#02455C] py-2 px-3 lg:py-2 xl:py-2.5 lg:px-4 xl:px-5 rounded-md flex transition ease-in-out hover:scale-105 duration-300"
                     >

@@ -131,6 +131,7 @@ Route::controller(\App\Http\Controllers\UjianSiswaController::class)->group(
     function (){
         Route::get("/courses/examination/{mapelId}/siswa/{siswaId}", "ujian")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa-examination");
         Route::get("/courses/{mapelId}/detail/examination/{pengerjaanUjianId}/siswa/{siswaId}", "detail")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-siswa-examination");
+        Route::get("/courses/{mapelId}/detail/penilaian/examination/{ujianId}/siswa/{siswaId}", "penilaian")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-penilaian-siswa-examination");
         Route::get("/courses/{mapelId}/detail/begin/examination/{ujianId}/siswa/{siswaId}", "beginExam")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("begin-siswa-examination");
         Route::post("/courses/{mapelId}/assign/{pengerjaanSiswaId}/examination/{ujianId}/siswa/{siswaId}", "assignExam")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("assign-siswa-examination");
 //        Route::post("/courses/{mapelId}/detail/examination/{pengerjaanTugasId}/siswa/{siswaId}", "addTugas")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("add-siswa-examination");
