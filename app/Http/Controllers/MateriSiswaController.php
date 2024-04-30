@@ -11,6 +11,7 @@ use App\Services\MateriSiswaService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MateriSiswaController extends Controller
 {
@@ -50,5 +51,18 @@ class MateriSiswaController extends Controller
                 "mapel" => $mapel,
                 "materi" => $materi
             ]);
+    }
+
+    public function isRead($mapelId, $materiId, $siswaId, Request $request): Response|RedirectResponse
+    {
+        $data = [
+            'is_read' => $request->input('is_read'),
+        ];
+
+        $this->materiService->markAsRead($materiId, $siswaId, $data);
+
+        toast('Selesai Membaca Materi!','success');
+
+        return redirect()->route('course-siswa-material',  ['mapelId' => $mapelId, 'siswaId' => $siswaId]);
     }
 }

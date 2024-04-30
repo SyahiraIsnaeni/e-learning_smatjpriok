@@ -197,7 +197,7 @@
                         </p>
                     </div>
                     <div class="hidden sm:block sm:w-1/3 sm:mt-2 lg:mt-1.5 sm:relative">
-                        @if($row->is_read == "sudah dibaca")
+                        @if($row->is_read == 1)
                         <div class="flex justify-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +256,7 @@
         @endforeach
     </div>
 </section>
-
+@include('sweetalert::alert')
 <!-- COPYRIGHT -->
 <footer class="block inset-x-0 bottom-0 mb-5">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">

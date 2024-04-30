@@ -82,6 +82,7 @@ Route::controller(\App\Http\Controllers\MateriSiswaController::class)->group(
     function (){
         Route::get("/courses/material/{mapelId}/siswa/{siswaId}", "materi")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa-material");
         Route::get("/courses/{mapelId}/detail/material/{materiId}/siswa/{siswaId}", "detail")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-siswa-material");
+        Route::post("/courses/{mapelId}/detail/read/material/{materiId}/siswa/{siswaId}", "isRead")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-read-siswa-material");
     }
 );
 

@@ -16,12 +16,12 @@ class MateriSiswaServiceImpl implements MateriSiswaService
             ->get();
 
         $materi->each(function ($materi) use ($studentId) {
-            $pengerjaanTugas = MateriSiswa::where('materi_id', $materi->id)
+            $materiSiswa = MateriSiswa::where('materi_id', $materi->id)
                 ->where('siswa_id', $studentId)
                 ->select('is_read')
                 ->first();
 
-            $materi->status = $pengerjaanTugas? $pengerjaanTugas->status : null;
+            $materi->is_read = $materiSiswa? $materiSiswa->is_read : null;
         });
 
         return $materi;
@@ -39,7 +39,7 @@ class MateriSiswaServiceImpl implements MateriSiswaService
     public function markAsRead($materiId, $siswaId, array $data)
     {
         $materiSiswa = MateriSiswa::where('materi_id', $materiId)
-            ->where('student_id', $siswaId)
+            ->where('siswa_id', $siswaId)
             ->firstOrFail();
 
         $materiSiswa->is_read = $data["is_read"];

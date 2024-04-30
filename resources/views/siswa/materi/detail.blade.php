@@ -207,28 +207,49 @@
                     </p>
                 </div>
             </a>
-            <a class="ml-auto" href="../list-materi/siswa.html">
-                <div
-                    class="bg-[#01C91A] bg-opacity-80 py-2 px-3 lg:py-2.5 lg:px-3.5 rounded-md transition hover:scale-105 hover:duration-300 flex"
-                >
-                    <p class="text-[12.5px] md:text-[13px] lg:text-sm font-semibold">
+            @if($materi["is_read"] == 0)
+                <form action="{{route("detail-read-siswa-material", ["mapelId" => $mapel["mapel_id"], "materiId" => $materi["materi"]->id, "siswaId" => $siswa->id])}}" method="post" enctype="multipart/form-data" class="ml-auto">
+                    @csrf
+                    <input type="hidden" name="is_read" value="1">
+                    <button type="submit"
+                            class="bg-[#01C91A] bg-opacity-80 py-2 px-3 lg:py-2.5 lg:px-3.5 rounded-md transition hover:scale-105 hover:duration-300 flex"
+                    >
+                        <p class="text-[12.5px] md:text-[13px] lg:text-sm font-semibold">
+                            Sudah Dibaca
+                        </p>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                            class="ml-1 w-4 h-4"
+                        >
+                            <path
+                                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                            />
+                        </svg>
+                    </button>
+                </form>
+            @else
+                <div class="bg-white border border-black border-opacity-20 flex px-3 py-2 rounded-md ml-auto">
+                    <p class="text-[12.5px] text-[#01C91A] md:text-[13px] lg:text-sm font-semibold ml-auto">
                         Sudah Dibaca
                     </p>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
                         class="ml-1 w-4 h-4"
+                        fill="#01C91A"
                     >
                         <path
                             d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
                         />
                     </svg>
                 </div>
-            </a>
+            @endif
+
         </div>
     </div>
 </section>
-
+@include('sweetalert::alert')
 <!-- COPYRIGHT -->
 <footer class="block inset-x-0 bottom-0 mb-5">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
