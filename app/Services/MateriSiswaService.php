@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface MateriSiswaService
 {
-    public function get($mapelId, $siswaId): ?Collection;
+    public function get($mapelId, $siswaId);
 
     public function getDetail($materiId, $siswaId);
 

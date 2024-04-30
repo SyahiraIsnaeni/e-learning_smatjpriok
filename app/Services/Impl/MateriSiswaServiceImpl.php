@@ -9,19 +9,22 @@ use Illuminate\Database\Eloquent\Collection;
 
 class MateriSiswaServiceImpl implements MateriSiswaService
 {
-    public function get($mapelId, $siswaId): ?Collection
+    public function get($mapelId, $studentId)
     {
-        return Materi::whereHas('mapel', function ($query) use ($mapelId) {
-            $query->where('id', $mapelId);
-        })
-            ->with(['materiSiswa' => function ($query) use ($siswaId) {
-                $query->where('siswa_id', $siswaId);
-            }])
-            ->get(['id', 'judul', 'deskripsi', 'created_at'])
-            ->map(function ($materi) {
-                $materi->is_read = $materi->materiSiswa->isEmpty() ? false : $materi->materiSiswa->first()->is_read;
-                return $materi;
-            });
+        $materi = Materi::where('mapel_id', $mapelId)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $materi->each(function ($materi) use ($studentId) {
+            $pengerjaanTugas = MateriSiswa::where('materi_id', $materi->id)
+                ->where('siswa_id', $studentId)
+                ->select('is_read')
+                ->first();
+
+            $materi->status = $pengerjaanTugas? $pengerjaanTugas->status : null;
+        });
+
+        return $materi;
     }
 
     public function getDetail($materiId, $siswaId)
