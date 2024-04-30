@@ -23,4 +23,8 @@ interface UjianService
 
     public function delete($ujianId);
 
+    public function addPenilaian($ujianId, $pengerjaanId, array $data);
+
+    public function getJawaban($ujianId, $pengerjaanId);
+
 }

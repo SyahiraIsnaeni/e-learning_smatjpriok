@@ -6,6 +6,7 @@ use App\Services\AdminService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 
 class LoginAdminController extends Controller
 {
@@ -38,6 +39,7 @@ class LoginAdminController extends Controller
 
         if ($this->adminService->login($email, $password)) {
             $request->session()->put("admin", $email);
+            $request->session()->put('last_activity', now());
             return redirect("/dashboard/admin");
         }
 

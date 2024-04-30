@@ -205,4 +205,46 @@ class UjianGuruController extends Controller
         return redirect()->route('course-guru-examination', ['mapelId' => $mapelId, 'guruId' => $guruId]);
     }
 
+    public function detailPengerjaanSiswa($mapelId, $ujianId, $pengerjaanId, $guruId): Response
+    {
+        $guru = Guru::findOrFail($guruId);
+        $mapel = $this->mapelService->getMapelDetail($mapelId);
+        $ujian = $this->ujianService->getDetail($ujianId);
+        $pengerjaan = $this->ujianService->getJawaban($ujianId, $pengerjaanId);
+        return response()
+            ->view("guru.ujian.penilaian", [
+                "title" => "Ujian " . $ujian->judul,
+                "guru" => $guru,
+                "mapel" => $mapel,
+                "ujian" => $ujian,
+                "data" => $pengerjaan['data'],
+                "pengerjaanSiswa" => $pengerjaan['pengerjaanSiswa'],
+                "siswa" => $pengerjaan['siswa'],
+            ]);
+    }
+
+    public function addDataNilai($mapelId, $ujianId, $pengerjaanId, $guruId, Request $request): Response|RedirectResponse
+    {
+
+        $validator = Validator::make($request->all(), [
+            'jawaban.*.pertanyaan_id' => 'required|numeric',
+            'jawaban.*.poin' => 'sometimes|required|numeric|min:0',
+        ]);
+
+        if ($validator->fails()) {
+            Alert::error('Gagal', 'Pastikan Semua Data Poin Terisi');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $poinData = $request->input('jawaban');
+
+        $this->ujianService->addPenilaian($ujianId, $pengerjaanId, $poinData);
+
+        Alert::success('Berhasil', 'Data Nilai Berhasil Disimpan');
+        return redirect()->route('detail-penilaian-examination', ['mapelId' => $mapelId, 'ujianId' => $ujianId, 'pengerjaanSiswaId' => $pengerjaanId, 'guruId' => $guruId]);
+    }
+
+
+
+
 }

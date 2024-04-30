@@ -136,5 +136,80 @@ class UjianServiceImpl implements UjianService
         Ujian::where('id', $ujianId)->delete();
     }
 
+    public function getJawaban($ujianId, $pengerjaanId)
+    {
+        $pertanyaan = PertanyaanUjian::where('ujian_id', $ujianId)->get();
+
+        $jawabanSiswa = JawabanSiswaUjian::where('pengerjaan_ujian_id', $pengerjaanId)->get();
+
+        $pengerjaanSiswa = PengerjaanUjianSiswa::findOrFail($pengerjaanId);
+
+        $siswa = $pengerjaanSiswa->siswa;
+
+        $data = [];
+
+        foreach ($pertanyaan as $pertanyaanItem) {
+            $jawabanPertanyaan = null;
+
+            foreach ($jawabanSiswa as $jawaban) {
+                if ($jawaban->pertanyaan_id === $pertanyaanItem->id) {
+                    $jawabanPertanyaan = $jawaban;
+                    break;
+                }
+            }
+
+            $data[] = [
+                'pertanyaan' => $pertanyaanItem,
+                'jawaban' => $jawabanPertanyaan,
+            ];
+        }
+
+        return [
+            'data' => $data,
+            'pengerjaanSiswa' => $pengerjaanSiswa,
+            'siswa' => $siswa,
+        ];
+    }
+
+    public function addPenilaian($ujianId, $pengerjaanId, array $data)
+    {
+        $totalPoin = 0;
+
+        foreach ($data as $jawaban) {
+            $previousJawaban = $this->getPreviousJawaban($pengerjaanId, $jawaban['pertanyaan_id']);
+
+            $jawabanSiswa = JawabanSiswaUjian::where('pengerjaan_ujian_id', $pengerjaanId)
+                ->where('pertanyaan_id', $jawaban['pertanyaan_id'])
+                ->first();
+
+            if ($jawabanSiswa) {
+                if (isset($jawaban['poin'])) {
+                    $jawabanSiswa->poin = $jawaban['poin'];
+                } else {
+                    $jawabanSiswa->poin = $previousJawaban['poin'];
+                }
+
+                $jawabanSiswa->save();
+
+                $totalPoin += $jawabanSiswa->poin;
+            }
+        }
+
+        $pengerjaanUjianSiswa = PengerjaanUjianSiswa::findOrFail($pengerjaanId);
+        $pengerjaanUjianSiswa->nilai = $totalPoin;
+        $pengerjaanUjianSiswa->save();
+    }
+
+    private function getPreviousJawaban($pengerjaanId, $pertanyaanId)
+    {
+        $previousJawaban = JawabanSiswaUjian::where('pengerjaan_ujian_id', $pengerjaanId)
+            ->where('pertanyaan_id', $pertanyaanId)
+            ->first();
+
+        return $previousJawaban ? ['poin' => $previousJawaban->poin] : [];
+    }
+
+
+
 
 }

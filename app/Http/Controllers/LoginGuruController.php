@@ -6,6 +6,7 @@ use App\Services\GuruService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 
 class LoginGuruController extends Controller
 {
@@ -39,6 +40,7 @@ class LoginGuruController extends Controller
         if ($this->guruService->login($emailNip, $password)) {
             $id = $this->guruService->getTeacherById($emailNip);
             $request->session()->put("guru", $id);
+            $request->session()->put('last_activity', now());
             return redirect("/dashboard/guru/" . $id);
         }
 

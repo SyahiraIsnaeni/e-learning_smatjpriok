@@ -61,7 +61,7 @@ class TugasSiswaController extends Controller
         ]);
 
         if ($validator->fails()) {
-            toast('Pastikan dokumen terisi!','Gagal');
+            toast('Pastikan dokumen terisi!','error');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -71,7 +71,7 @@ class TugasSiswaController extends Controller
 
         $this->tugasService->addAssignment($tugasId, $siswaId, $data);
 
-        toast('Berhasil mengunggah dokumen!','Sukses');
+        toast('Berhasil mengunggah dokumen!','success');
 
         return redirect()->route('detail-siswa-assignment',  ['mapelId' => $mapelId, 'pengerjaanTugasId' => $tugasId, 'siswaId' => $siswaId]);
     }
@@ -80,7 +80,7 @@ class TugasSiswaController extends Controller
     {
         $this->tugasService->resetData($tugasId, $siswaId);
 
-        toast('Berhasil membatalkan pengumpulan tugas!','Sukses');
+        toast('Berhasil membatalkan pengumpulan tugas!','success');
 
         return redirect()->route('detail-siswa-assignment',  ['mapelId' => $mapelId, 'pengerjaanTugasId' => $tugasId, 'siswaId' => $siswaId]);
     }

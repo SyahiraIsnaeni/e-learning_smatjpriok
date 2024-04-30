@@ -247,7 +247,7 @@
                             <p
                                 class="text-xs md:text-[12.5px] lg:text-[13.5px] leading-normal mt-1.5 text-justify"
                             >
-                                {{ strlen(strip_tags($row->deskripsi)) > 250 ? substr(strip_tags($row->deskripsi), 0, 250) . '...' : strip_tags($row->deskripsi) }}
+                                {{ strlen(strip_tags($row->deskripsi)) > 300 ? substr(strip_tags($row->deskripsi), 0, 300) . '...' : strip_tags($row->deskripsi) }}
                             </p>
                         </div>
                     </div>

@@ -119,7 +119,20 @@ Route::controller(\App\Http\Controllers\UjianGuruController::class)->group(
         Route::get("/courses/{mapelId}/edit/examination/{tugasId}/guru/{guruId}", "edit")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-examination");
         Route::post("/courses/{mapelId}/edit/examination/{ujianId}/guru/{guruId}", "editDataUjian")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-data-examination");
         Route::delete("/courses/{mapelId}/delete/examination/{ujianId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-examination");
+        Route::get("/courses/{mapelId}/penilaian/{ujianId}/examination/{pengerjaanSiswaId}/guru/{guruId}", "detailPengerjaanSiswa")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-penilaian-examination");
+        Route::post("/courses/{mapelId}/add/penilaian/{ujianId}/examination/{pengerjaanSiswaId}/guru/{guruId}", "addDataNilai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-add-penilaian-examination");
 //        Route::get("/courses/{mapelId}/detail/{tugasId}/assignment/{pengerjaanTugasId}/guru/{guruId}", "pengerjaanDetail")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-penilaian-guru-assignment");
 //        Route::post("/courses/{mapelId}/detail/post/{tugasId}/assignment/{pengerjaanTugasId}/guru/{guruId}", "addNilaiSiswa")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("add-penilaian-guru-assignment");
+    }
+);
+
+Route::controller(\App\Http\Controllers\UjianSiswaController::class)->group(
+    function (){
+        Route::get("/courses/examination/{mapelId}/siswa/{siswaId}", "ujian")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("course-siswa-examination");
+        Route::get("/courses/{mapelId}/detail/examination/{pengerjaanUjianId}/siswa/{siswaId}", "detail")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-siswa-examination");
+        Route::get("/courses/{mapelId}/detail/begin/examination/{ujianId}/siswa/{siswaId}", "beginExam")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("begin-siswa-examination");
+        Route::post("/courses/{mapelId}/assign/{pengerjaanSiswaId}/examination/{ujianId}/siswa/{siswaId}", "assignExam")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("assign-siswa-examination");
+//        Route::post("/courses/{mapelId}/detail/examination/{pengerjaanTugasId}/siswa/{siswaId}", "addTugas")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("add-siswa-examination");
+//        Route::delete("/courses/{mapelId}/detail/examination/{pengerjaanTugasId}/siswa/{siswaId}", "deleteDokumen")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("delete-siswa-examination");
     }
 );

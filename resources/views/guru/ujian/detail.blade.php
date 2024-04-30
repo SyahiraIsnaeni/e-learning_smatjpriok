@@ -183,6 +183,11 @@
                 Tenggat: {{ \Carbon\Carbon::parse($ujian->deadline)->format('j F Y, \p\u\k\u\l H:i') }}
             </p>
             <p
+                class="text-[13px] font-medium md:text-[13.5px] lg:text-sm xl:text-[14.5px] mt-0.5 md:mt-1 leading-relaxed"
+            >
+                Tipe Soal: {{$ujian->tipe}}
+            </p>
+            <p
                 class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[14.5px] xl:text-[15px] mt-1.5 md:mt-2.5 leading-relaxed"
             >
                 {!! $ujian->deskripsi !!}
@@ -212,7 +217,7 @@
             <!-- TAMPILAN HP -->
             <div class="mt-5 md:hidden">
                 @foreach($ujian->pengerjaanSiswa as $row2)
-                    <a href="#">
+                    <a href="{{route("detail-penilaian-examination", ["mapelId" => $mapel["mapel_id"], "ujianId" => $ujian->id, "pengerjaanSiswaId" => $row2->id, "guruId" => $guru->id])}}">
                         <div
                             class="mt-3 py-3 px-3 flex bg-[#E6F4F1] rounded-md border border-black border-opacity-20 transition hover:-translate-y-0.5 hover:shadow-md hover:duration-200"
                         >
@@ -222,7 +227,9 @@
                             <p
                                 class="text-xs sm:text-[12.5px] font-medium w-1/2 sm:w-1/3 text-right sm:text-center"
                             >
-                                {{ $row2->finished_at->diff($row2->started_at)->format('%H:%I:%S') }}
+                                @if ($row2->finished_at && $row2->started_at)
+                                    {{ \Carbon\Carbon::parse($row2->finished_at)->diff(\Carbon\Carbon::parse($row2->started_at))->format('%H:%I:%S') }}
+                                @endif
                             </p>
                             <p
                                 class="text-xs sm:text-[12.5px] hidden font-medium sm:block sm:w-1/3 sm:text-right"
@@ -248,7 +255,9 @@
                     <p
                         class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
                     >
-                        {{ $row2->finished_at->diff($row2->started_at)->format('%H:%I:%S') }}
+                        @if ($row2->finished_at && $row2->started_at)
+                            {{ \Carbon\Carbon::parse($row2->finished_at)->diff(\Carbon\Carbon::parse($row2->started_at))->format('%H:%I:%S') }}
+                        @endif
                     </p>
                     <p
                         class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
@@ -256,7 +265,7 @@
                         {{ \Carbon\Carbon::parse($row2->finished_at)->format('j F Y, \p\u\k\u\l H:i') }}
                     </p>
                     <a
-                        href="#"
+                        href="{{route("detail-penilaian-examination", ["mapelId" => $mapel["mapel_id"], "ujianId" => $ujian->id, "pengerjaanSiswaId" => $row2->id, "guruId" => $guru->id])}}"
                         class="flex justify-end ml-auto hover:text-[#D78010] hover:font-semibold"
                     >
                         <svg

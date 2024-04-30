@@ -6,6 +6,7 @@ use App\Services\SiswaService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Session;
 
 class LoginSiswaController extends Controller
 {
@@ -39,6 +40,7 @@ class LoginSiswaController extends Controller
         if ($this->siswaService->login($emailNis, $password)) {
             $id = $this->siswaService->getStudentById($emailNis);
             $request->session()->put("siswa", $id);
+            $request->session()->put('last_activity', now());
             return redirect("/dashboard/siswa/" . $id);
         }
 
