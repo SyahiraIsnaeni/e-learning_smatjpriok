@@ -76,7 +76,7 @@
             >My Courses</a
             >
             <a
-                href="../../profile/siswa.html"
+                href="{{route("profile-siswa", $siswa->id)}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >My Profile</a
             >
@@ -117,7 +117,7 @@
             <a href="{{route("course-siswa", $siswa->id)}}">
                 <p class="hover:text-oren">My Courses</p>
             </a>
-            <a href="../../profile/siswa.html">
+            <a href="{{route("profile-siswa", $siswa->id)}}">
                 <p class="hover:text-oren">My Profile</p>
             </a>
             <a href="#">
