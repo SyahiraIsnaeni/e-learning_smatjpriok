@@ -67,11 +67,12 @@
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
-            <a
-                href="../login/siswa.html"
-                class="text-white py-2.5 block text-center text-sm hover:text-oren"
-            >Logout</a
-            >
+            <form action="{{ route('logout-siswa') }}" method="post" style="display: flex; justify-content: center; align-items: center;">
+                @csrf
+                <button type="submit" class="text-center items-center text-white py-2.5 block text-sm hover:text-oren">
+                    Logout
+                </button>
+            </form>
             <!-- Tambahkan navigasi lainnya sesuai kebutuhan -->
         </div>
     </div>
@@ -108,9 +109,12 @@
             <a href="#">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
-            <a href="../login/siswa.html">
-                <p class="hover:text-oren">Logout</p>
-            </a>
+            <form action="{{ route('logout-siswa') }}" method="post" >
+                @csrf
+                <button type="submit" class="hover:text-oren">
+                    <span>Logout</span>
+                </button>
+            </form>
         </div>
     </div>
 

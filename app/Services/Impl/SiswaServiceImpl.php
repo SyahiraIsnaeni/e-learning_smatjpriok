@@ -33,4 +33,20 @@ class SiswaServiceImpl implements SiswaService
 
         return $siswa ? $siswa->id : null;
     }
+
+    public function edit($id, array $data)
+    {
+        $siswa = Siswa::findOrFail($id);
+
+        if ($data['email'] == null){
+            $siswa->password = bcrypt($data['password']);
+        }else{
+            $siswa->email = $data['email'];
+            $siswa->password = bcrypt($data['password']);
+        }
+
+        $siswa->save();
+
+        return $siswa;
+    }
 }

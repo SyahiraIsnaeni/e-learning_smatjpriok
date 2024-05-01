@@ -36,6 +36,20 @@ Route::controller(\App\Http\Controllers\DashboardSiswaController::class)->group(
     }
 );
 
+Route::controller(\App\Http\Controllers\ProfilSiswaController::class)->group(
+    function (){
+        Route::get("/profile/siswa/{id}", "index")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("profile-siswa");
+        Route::post("/profile/edit/siswa/{id}", "editData")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("edit-profile-siswa");
+    }
+);
+
+Route::controller(\App\Http\Controllers\ProfilGuruController::class)->group(
+    function (){
+        Route::get("/profile/guru/{id}", "index")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("profile-guru");
+        Route::post("/profile/edit/guru/{id}", "editData")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-profile-guru");
+    }
+);
+
 Route::controller(\App\Http\Controllers\DashboardGuruController::class)->group(
     function (){
         Route::get("/dashboard/guru/{id}", "index")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("dashboard-guru");

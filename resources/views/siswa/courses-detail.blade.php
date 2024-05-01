@@ -230,35 +230,6 @@
                 </div>
             </a>
         </div>
-
-        <!-- Jadwal Pelajaran -->
-        <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:scale-105">
-            <a href="../ujian/list-ujian/siswa.html">
-                <div class="mt-5 md:mt-0 bg-[#F6F551] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-95">
-                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Jadwal Pelajaran</h1>
-                    <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
-                        Ayo jelajahi jadwal pelajaranmu dan aturlah waktu belajarmu dengan mudah dan efisien!
-                    </p>
-                    <div class="mt-5 xl:mt-7 flex justify-end">
-                        <p class="text-[13px] xl:text-sm font-medium flex">
-                    <span class="underline underline-offset-1">Selengkapnya</span
-                    ><span>
-                      <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="16"
-                          width="14"
-                          viewBox="0 0 448 512"
-                          class="ml-1 block mt-0.5 xl:mt-[2.5px] xl:ml-1.5"
-                      >
-                        <path
-                            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                        /></svg
-                      ></span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
     </div>
 </section>
 

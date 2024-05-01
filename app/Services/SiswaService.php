@@ -11,4 +11,6 @@ interface SiswaService
     public function getStudent($id): ?Siswa;
 
     public function getStudentById($emailNis): ?int;
+
+    public function edit($id, array $data);
 }

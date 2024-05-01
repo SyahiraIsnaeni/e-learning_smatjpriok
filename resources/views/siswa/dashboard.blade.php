@@ -58,7 +58,7 @@
             >My Courses</a
             >
             <a
-                href="../profile/siswa.html"
+                href="{{route("profile-siswa", $siswa->id)}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >My Profile</a
             >
@@ -102,7 +102,7 @@
             <a href="{{route("course-siswa", $siswa->id)}}">
                 <p class="hover:text-oren">My Courses</p>
             </a>
-            <a href="../profile/siswa.html">
+            <a href="{{route("profile-siswa", $siswa->id)}}">
                 <p class="hover:text-oren">My Profile</p>
             </a>
             <a href="#">
@@ -166,7 +166,7 @@
                             id="progress"
                             cx="20"
                             cy="20"
-                            r="16"
+                            r="15.9"
                             fill="none"
                             stroke="#EE982B"
                             stroke-width="8"
@@ -186,6 +186,7 @@
                     ></text>
                 </svg>
             </div>
+
 
             <!-- KETERANGAN -->
             <div class="block ml-5 sm:ml-8 md:ml-5 lg:ml-8 xl:ml-16">
@@ -237,60 +238,69 @@
             <div
                 class="mb-2 bg-[#F1F1E6] rounded-md transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
             >
-                <a href="../tugas/detail-tugas/siswa.html">
-                    <div
-                        class="text-black mt-4 xl:mt-5 py-3 px-3 xl:px-5 lg:py-3.5 xl:py-4"
-                    >
-                        <h2
-                            class="font-semibold text-[13px] md:text-[14px] lg:text-[14.5px] xl:text-[15px]"
+                @if($firstMateri && $firstMateri->judul != null)
+                    <a href="{{route("detail-siswa-material", ["mapelId" => $firstMateri->mapel->id, "materiId" => $firstMateri->id, "siswaId" => $siswa->id])}}">
+                        <div
+                            class="text-black mt-4 xl:mt-5 py-3 px-3 xl:px-5 lg:py-3.5 xl:py-4"
                         >
-                            Tugas Termodinamika
-                        </h2>
-                        <p
-                            class="font-normal text-xs md:text-[13px] lg:text-[13.5px] xl:text-[14px] mt-1.5 sm:mt-2"
-                        >
-                            Fisika X IPA 3
-                        </p>
-                    </div>
-                </a>
+                            <h2
+                                class="font-semibold text-[13px] md:text-[14px] lg:text-[14.5px] xl:text-[15px]"
+                            >
+                               Materi {{ $firstMateri->judul }}
+                            </h2>
+                            <p
+                                class="font-normal text-xs md:text-[13px] lg:text-[13.5px] xl:text-[14px] mt-1.5 sm:mt-2"
+                            >
+                                {{ $firstMateri->mapel->nama }}
+                            </p>
+                        </div>
+                    </a>
+                @else
+                @endif
             </div>
             <div
                 class="mb-2 bg-[#F1F1E6] rounded-md transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
             >
-                <a href="../ujian/detail-ujian/siswa.html">
+                @if($firstTugas && $firstTugas->judul != null)
+                <a href="{{route("detail-siswa-assignment", ["mapelId" => $firstTugas->mapel->id, "pengerjaanTugasId" => $firstTugas->id, "siswaId" => $siswa->id])}}">
                     <div class="text-black mt-3 xl:mt-4 py-3 xl:px-5 px-3 xl:py-4">
                         <h2
                             class="font-semibold text-[13px] md:text-[14px] lg:text-[14.5px] xl:text-[15px]"
                         >
-                            Ujian Integral Trigonometri
+                            Tugas {{ $firstTugas->judul }}
                         </h2>
                         <p
                             class="font-normal text-xs mt-1.5 md:text-[13px] xl:text-[14px] sm:mt-2 lg:text-[13.5px]"
                         >
-                            Fisika X IPA 3
+                            {{ $firstTugas->mapel->nama }}
                         </p>
                     </div>
                 </a>
+                @else
+                @endif
             </div>
             <div
                 class="mb-2 bg-[#F1F1E6] rounded-md transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg"
             >
-                <a href="../materi/detail-materi/siswa.html">
+                @if($firstUjian && $firstUjian->judul != null)
+                <a href="{{route("detail-siswa-examination", ["mapelId" => $firstUjian->mapel->id, "pengerjaanUjianId" => $firstUjian->id, "siswaId" => $siswa->id])}}">
                     <div
                         class="text-black mt-3 xl:mt-4 py-3 px-3 xl:px-5 lg:py-3.5 xl:py-4"
                     >
                         <h2
                             class="font-semibold text-[13px] md:text-[14px] lg:text-[14.5px] xl:text-[15px]"
                         >
-                            Materi Limit Tak Hingga
+                            Ujian {{ $firstUjian->judul }}
                         </h2>
                         <p
                             class="font-normal text-xs mt-1.5 md:text-[13px] sm:mt-2 lg:text-[13.5px] xl:text-[14px]"
                         >
-                            Fisika X IPA 3
+                            {{ $firstUjian->mapel->nama }}
                         </p>
                     </div>
                 </a>
+                @else
+                @endif
             </div>
         </div>
     </div>
@@ -300,15 +310,45 @@
             const progressText = document.getElementById("progressText");
 
             function updateProgress(percentage) {
-                const dashArray = (percentage / 100) * 100;
+                const dashArray = {{$totalSelesai}};
                 progress.style.strokeDasharray = `${dashArray}, 100`;
-                progressText.textContent = `${percentage}%`;
+                progressText.textContent = `{{$totalSelesai}}%`;
             }
 
             // Example: Set the progress to 50%
             updateProgress(75);
         });
     </script>
+</section>
+
+<section class="mt-5 md:mt-10 lg:mt-12 mx-5 sm:mx-8 xl:mx-20 lg:mx-10 xl:mt-10 mb-10 ">
+    <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg">
+        <a href="../ujian/list-ujian/siswa.html">
+            <div class="mt-5 md:mt-0 bg-[#FBA337] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-95">
+                <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Jadwal Pelajaran</h1>
+                <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
+                    Ayo, mari kita telusuri jadwal pelajaranmu dengan semangat untuk meraih impian akademismu yang gemilang! Dengan menjalankan jadwal ini sebagai panduan, kamu dapat membentuk kebiasaan belajar yang teratur, mencapai prestasi tertinggi, dan menggali potensi tersembunyi sepenuhnya. Ayo, bersemangat dan berjuang bersama untuk meraih kesuksesan!
+                </p>
+                <div class="mt-5 xl:mt-7 flex justify-end">
+                    <p class="text-[13px] xl:text-sm font-medium flex">
+                    <span class="underline underline-offset-1">Selengkapnya</span
+                    ><span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="16"
+                          width="14"
+                          viewBox="0 0 448 512"
+                          class="ml-1 block mt-0.5 xl:mt-[2.5px] xl:ml-1.5"
+                      >
+                        <path
+                            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                        /></svg
+                      ></span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
 </section>
 
 <!-- COPYRIGHT -->

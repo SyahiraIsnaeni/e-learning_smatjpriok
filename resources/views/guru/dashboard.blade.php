@@ -52,7 +52,7 @@
             >Dashboard</a
             >
             <a
-                href="../profile/guru.html"
+                href="{{route("profile-guru", $guru->id)}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >My Profile</a
             >
@@ -93,7 +93,7 @@
                     Dashboard
                 </p>
             </a>
-            <a href="../profile/guru.html">
+            <a href="{{route("profile-guru", $guru->id)}}">
                 <p class="hover:text-oren">My Profile</p>
             </a>
             <a href="#">

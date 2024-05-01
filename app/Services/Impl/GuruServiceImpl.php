@@ -33,4 +33,20 @@ class GuruServiceImpl implements GuruService
         return $guru ? $guru->id : null;
     }
 
+    public function edit($id, array $data)
+    {
+        $guru = Guru::findOrFail($id);
+
+        if ($data['email'] == null){
+            $guru->password = bcrypt($data['password']);
+        }else{
+            $guru->email = $data['email'];
+            $guru->password = bcrypt($data['password']);
+        }
+
+        $guru->save();
+
+        return $guru;
+    }
+
 }
