@@ -132,14 +132,36 @@
 </nav>
 
 <!-- MAPEL TUGAS -->
-<section class="text-black mt-8 xl:mt-12">
-    <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
+<section class="text-black mt-8 xl:mt-12 md:flex">
+    <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20 md:mr-10">
         <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">Tugas</h1>
         <h1
             class="font-medium text-sm lg:text-base xl:text-lg mt-1.5 lg:mt-2.5 xl:mt-3"
         >
             {{$mapel["nama_mapel"]}}
         </h1>
+    </div>
+    <div class="hidden md:block ml-auto mr-5 sm:mr-8 lg:mr-10 xl:mr-20">
+        <a href="{{route("course-siswa-detail", ['mapelId' => $mapel['mapel_id'], 'siswaId' => $siswa->id])}}" class="hidden sm:block ml-auto">
+            <div
+                class="bg-[#EE982B] py-2 px-3 lg:py-2 xl:py-2.5 lg:px-4 xl:px-6 rounded-md flex transition ease-in-out hover:scale-105 duration-300"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    class="w-3.5 h-3.5 mt-0.5 lg:mt-[3px] lg:h-[14px] lg:w-[14px] xl:h-[16px] xl:w-[16px]"
+                >
+                    <path
+                        d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+                    />
+                </svg>
+                <p
+                    class="text-[13px] font-semibold ml-0.5 xl:ml-1 lg:text-[13.5px] xl:text-[15px]"
+                >
+                    Kembali
+                </p>
+            </div>
+        </a>
     </div>
 </section>
 
