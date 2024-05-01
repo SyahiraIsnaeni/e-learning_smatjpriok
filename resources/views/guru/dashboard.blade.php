@@ -133,9 +133,36 @@
 </div>
 
 <!-- COURSES -->
-<section class="font-learn text-black mt-7 mb-10 xl:mt-10">
+<section class="font-learn text-black mt-5 mb-10 xl:mt-7">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
-        <h1 class="font-semibold text-[16.5px] xl:text-[18px]">My Courses</h1>
+        <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg rounded-lg">
+            <a href="../ujian/list-ujian/guru.html">
+                <div class="mt-5 md:mt-0 bg-[#FF8884] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-95">
+                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Jadwal Mengajar</h1>
+                    <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
+                        Jadwal mengajar memberi arahan pada guru untuk menentukan waktu beserta kegiatan pembelajaran. Dengan mengikuti jadwal mengajar, guru dapat mengatur kegiatan pembelajaran secara efisien dan memberikan pengalaman belajar yang terstruktur kepada para siswa.
+                    </p>
+                    <div class="mt-5 xl:mt-7 flex justify-end">
+                        <p class="text-[13px] xl:text-sm font-medium flex">
+                    <span class="underline underline-offset-1">Selengkapnya</span
+                    ><span>
+                      <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="16"
+                          width="14"
+                          viewBox="0 0 448 512"
+                          class="ml-1 block mt-0.5 xl:mt-[2.5px] xl:ml-1.5"
+                      >
+                        <path
+                            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                        /></svg
+                      ></span>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <h1 class="font-semibold text-[16.5px] xl:text-[18px] mt-5 md:mt-7 lg:mt-8">My Courses</h1>
         <div class="mt-3 xl:mt-4">
             <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-6" id="mapel-list">
                 @foreach($mapels as $mapel)

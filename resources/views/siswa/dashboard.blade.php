@@ -322,9 +322,9 @@
 </section>
 
 <section class="mt-5 md:mt-10 lg:mt-12 mx-5 sm:mx-8 xl:mx-20 lg:mx-10 xl:mt-10 mb-10 ">
-    <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg">
+    <div class="transition ease-in-out hover:-translate-y-1 duration-300 hover:shadow-lg rounded-lg">
         <a href="../ujian/list-ujian/siswa.html">
-            <div class="mt-5 md:mt-0 bg-[#FBA337] px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-95">
+            <div class="mt-5 md:mt-0 bg-[#FFA15D]  px-5 sm:px-7 py-6 lg:py-7 xl:px-8 xl:py-8 rounded-lg bg-opacity-95">
                 <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg">Jadwal Pelajaran</h1>
                 <p class="font-normal text-[13px] sm:text-[13.5px] xl:text-sm xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">
                     Ayo, mari kita telusuri jadwal pelajaranmu dengan semangat untuk meraih impian akademismu yang gemilang! Dengan menjalankan jadwal ini sebagai panduan, kamu dapat membentuk kebiasaan belajar yang teratur, mencapai prestasi tertinggi, dan menggali potensi tersembunyi sepenuhnya. Ayo, bersemangat dan berjuang bersama untuk meraih kesuksesan!

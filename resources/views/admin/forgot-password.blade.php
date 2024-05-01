@@ -12,7 +12,7 @@
 </head>
 <body class="bg-biru-muda font-learn">
 <div class="px-8 mt-20 md:mt-24 lg:mt-32">
-    <h1 class="text-center text-3xl font-bold leading-normal lg:text-4xl xl:text-5xl">Forget Password Teacher</h1>
+    <h1 class="text-center text-3xl font-bold leading-normal lg:text-4xl xl:text-5xl">Forget Password Admin</h1>
     <h4 class="text-center mt-5 lg:mt-8 mb-7 sm:mb-10 lg:mb-12 xl:mb-16 font-semibold text-base sm:text-lg lg:text-xl xl:text-2xl">Please Confirm Your Email</h4>
     <div class="sm:mx-16 md:mx-28 lg:mx-56 xl:mx-64">
         <label for="email" class="font-medium">
