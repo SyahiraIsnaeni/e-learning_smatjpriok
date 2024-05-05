@@ -74,10 +74,10 @@
             </form>
         </div>
         <div class="mt-2 lg:mt-3 xl:mt-4">
-            <a class="text-black text-xs lg:text-sm" href="../forget-password/siswa.html"
+            <a class="text-black text-xs lg:text-sm" href="https://api.whatsapp.com/send/?phone=089601371497&text&type=phone_number&app_absent=0"
             >Forgot your password?
                 <span class="underline underline-offset-2 font-semibold hover:font-bold hover:text-oren"
-                >Click here</span
+                >Contact your admin</span
                 ></a
             >
             <br />

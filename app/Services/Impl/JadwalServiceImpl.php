@@ -2,7 +2,7 @@
 
 namespace App\Services\Impl;
 
-class ForgotPasswordAdminServiceImpl
+class JadwalServiceImpl
 {
 
 }

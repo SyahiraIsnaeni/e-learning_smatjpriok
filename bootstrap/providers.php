@@ -3,10 +3,13 @@
 return [
     App\Providers\AdminServiceProvider::class,
     App\Providers\AppServiceProvider::class,
+    App\Providers\DataGuruServiceProvider::class,
+    App\Providers\DataSiswaServiceProvider::class,
     App\Providers\ForgotPasswordAdminServiceProvider::class,
     App\Providers\ForgotPasswordGuruServiceProvider::class,
     App\Providers\ForgotPasswordSiswaServiceProvider::class,
     App\Providers\GuruServiceProvider::class,
+    App\Providers\JadwalServiceProvider::class,
     App\Providers\KelasServiceProvider::class,
     App\Providers\MataPelajaranDetailGuruServiceProvider::class,
     App\Providers\MataPelajaranDetailSiswaServiceProvider::class,

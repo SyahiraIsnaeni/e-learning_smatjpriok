@@ -2,21 +2,22 @@
 
 namespace App\Providers;
 
-use App\Services\ForgotPasswordGuruService;
-use App\Services\Impl\ForgotPasswordGuruServiceImpl;
+use App\Services\Impl\JadwalServiceImpl;
+use App\Services\JadwalService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class ForgotPasswordGuruServiceProvider extends ServiceProvider implements DeferrableProvider
+class JadwalServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public array $singletons = [
-        ForgotPasswordGuruService::class => ForgotPasswordGuruServiceImpl::class
+        JadwalService::class => JadwalServiceImpl::class
     ];
 
     public function provides(): array
     {
-        return [ForgotPasswordGuruService::class];
+        return [JadwalService::class];
     }
+
     public function register(): void
     {
         //

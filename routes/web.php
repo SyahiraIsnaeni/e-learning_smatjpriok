@@ -14,6 +14,23 @@ Route::controller(\App\Http\Controllers\LoginAdminController::class)->group(
     }
 );
 
+Route::controller(\App\Http\Controllers\ListGuruController::class)->group(
+    function (){
+        Route::get("/data/guru", "guru")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("data-guru");
+        Route::get("/data/guru/{id}", "edit")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("edit-data-guru");
+        Route::post("/data/guru/detail/{id}", "editData")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("edit-detail-data-guru");
+    }
+);
+
+Route::controller(\App\Http\Controllers\ListSiswaController::class)->group(
+    function (){
+        Route::get("/data/kelas", "kelas")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("data-kelas");
+        Route::get("/data/siswa/{kelasId}", "siswa")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("data-siswa");
+        Route::get("/data/edit/siswa/{id}", "edit")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("edit-data-siswa");
+        Route::post("/data/edit/detail/siswa/{id}", "editData")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("edit-detail-data-siswa");
+    }
+);
+
 Route::controller(\App\Http\Controllers\LoginGuruController::class)->group(
     function (){
         Route::get("/login/guru", "login")->middleware([\App\Http\Middleware\OnlyGuestMiddleware::class])->name("login-guru");
@@ -59,6 +76,7 @@ Route::controller(\App\Http\Controllers\DashboardGuruController::class)->group(
 Route::controller(\App\Http\Controllers\DashboardAdminController::class)->group(
     function (){
         Route::get("/dashboard/admin", "index")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("dashboard-admin");
+        Route::delete("/dashboard/delete/e-learning", "deleteAllData")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("delete-e-learning");
     }
 );
 

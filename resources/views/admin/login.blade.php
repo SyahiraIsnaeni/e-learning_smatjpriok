@@ -73,15 +73,6 @@
                 </button>
             </form>
         </div>
-        <div class="mt-2 lg:mt-3 xl:mt-4">
-            <a class="text-black text-xs lg:text-sm" href="../forget-password/admin.html"
-            >Forgot your password?
-                <span class="underline underline-offset-2 font-semibold hover:font-bold hover:text-oren"
-                >Click here</span
-                ></a
-            >
-            <br />
-        </div>
     </div>
 </section>
 </body>

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-interface ForgotPasswordAdminService
+interface JadwalService
 {
 
 }
