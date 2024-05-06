@@ -149,7 +149,7 @@
                 {{$mapel["nama_kelas"]}}
             </h1>
         </div>
-        <a href="{{route("course-guru-add-examination", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}" class="hidden sm:block ml-auto">
+        <a href="{{route("course-guru-examination", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}" class="hidden sm:block ml-auto">
             <div
                 class="bg-[#EE982B] py-2 px-3 lg:py-2 xl:py-2.5 lg:px-4 xl:px-6 rounded-md flex transition ease-in-out hover:scale-105 duration-300"
             >

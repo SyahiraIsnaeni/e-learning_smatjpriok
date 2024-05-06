@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Services\MataPelajaranDetailGuruService;
-use App\Services\TugasService;
 use App\Services\UjianService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -123,9 +122,7 @@ class UjianGuruController extends Controller
             }
         }
 
-
     }
-
     public function detailUjian($mapelId, $ujianId, $guruId):Response
     {
         $guru = Guru::findOrFail($guruId);

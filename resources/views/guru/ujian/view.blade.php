@@ -162,7 +162,7 @@
 <!-- ADD DAN SEARCH -->
 <section class="mt-8 xl:mt-12">
     <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20 flex">
-        <a href="{{route("course-guru-add-examination", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
+        <a href="{{route("course-guru-add-essay", ['mapelId' => $mapel['mapel_id'], 'guruId' => $guru->id])}}">
             <div
                 class="bg-[#763500] rounded-md px-3 py-2.5 xl:py-3 lg:px-4 flex transition ease-in-out hover:scale-105 duration-300"
             >

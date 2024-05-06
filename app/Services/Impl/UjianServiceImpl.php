@@ -42,11 +42,6 @@ class UjianServiceImpl implements UjianService
             ->count();
     }
 
-    public function addPilihanGanda($mapelId, array $data)
-    {
-
-    }
-
     public function addEssai($mapelId, array $data)
     {
         $ujian = new Ujian();
@@ -54,7 +49,6 @@ class UjianServiceImpl implements UjianService
         $ujian->deskripsi = $data['deskripsi'];
         $ujian->deadline = $data['deadline'];
         $ujian->durasi = $data['durasi'];
-        $ujian->tipe = "essai";
         $ujian->mapel_id = $mapelId;
         $ujian->created_at = Carbon::now('Asia/Jakarta');
         $ujian->updated_at = Carbon::now('Asia/Jakarta');
@@ -81,11 +75,6 @@ class UjianServiceImpl implements UjianService
         }
 
         return $ujian;
-    }
-
-    public function editPilihanGanda($ujianId)
-    {
-        // TODO: Implement editPilihanGanda() method.
     }
 
     public function editEssai($ujianId, array $data)
@@ -121,13 +110,6 @@ class UjianServiceImpl implements UjianService
         })->delete();
 
         PengerjaanUjianSiswa::where('ujian_id', $ujianId)->delete();
-
-        // Delete Options
-        OpsiJawabanUjian::whereIn('pertanyaan_id', function ($query) use ($ujianId) {
-            $query->select('id')
-                ->from('pertanyaan_ujians')
-                ->where('ujian_id', $ujianId);
-        })->delete();
 
         // Delete Pertanyaans
         PertanyaanUjian::where('ujian_id', $ujianId)->delete();

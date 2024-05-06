@@ -13,11 +13,7 @@ interface UjianService
 
     public function alreadySubmit($ujianId);
 
-    public function addPilihanGanda($mapelId, array $data);
-
     public function addEssai($mapelId, array $data);
-
-    public function editPilihanGanda($ujianId);
 
     public function editEssai($ujianId, array $data);
 

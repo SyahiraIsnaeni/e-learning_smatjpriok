@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text("deskripsi")->nullable(false);
             $table->dateTime("deadline")->nullable(false);
             $table->time("durasi")->nullable(false);
-            $table->enum('tipe', ['pilihan_ganda', 'essai'])->nullable(false);
             $table->timestamps();
             $table->foreign("mapel_id")->references("id")->on("mapel");
         });

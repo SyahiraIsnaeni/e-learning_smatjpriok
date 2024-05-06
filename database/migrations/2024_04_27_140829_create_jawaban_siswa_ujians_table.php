@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id()->nullable(false)->primary();
             $table->unsignedBigInteger("pengerjaan_ujian_id")->nullable(false);
             $table->unsignedBigInteger("pertanyaan_id")->nullable(false);
-            $table->unsignedBigInteger("opsi_id")->nullable(true);
             $table->text("jawaban")->nullable(true);
             $table->float("poin")->nullable(true);
             $table->foreign("pengerjaan_ujian_id")->references("id")->on("pengerjaan_ujian_siswas");
             $table->foreign("pertanyaan_id")->references("id")->on("pertanyaan_ujians");
-            $table->foreign("opsi_id")->references("id")->on("opsi_jawaban_ujians");
             $table->timestamps();
         });
     }

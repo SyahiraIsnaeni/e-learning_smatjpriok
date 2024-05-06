@@ -151,8 +151,6 @@ Route::controller(\App\Http\Controllers\TugasSiswaController::class)->group(
 Route::controller(\App\Http\Controllers\UjianGuruController::class)->group(
     function (){
         Route::get("/courses/examination/{mapelId}/guru/{guruId}", "ujian")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-examination");
-        Route::get("/courses/add/examination/{mapelId}/guru/{guruId}", "add")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-add-examination");
-        Route::get("/courses/add/multiple-choice/examination/{mapelId}/guru/{guruId}", "addPilihanGanda")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-add-multiple-choice");
         Route::get("/courses/add/essay/examination/{mapelId}/guru/{guruId}", "addEssai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-add-essay");
         Route::post("/courses/add/data/essay/examination/{mapelId}/guru/{guruId}", "addDataEssai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-add-data-essai");
         Route::get("/courses/detail/{mapelId}/examination/{ujianId}/guru/{guruId}", "detailUjian")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-guru-examination");
@@ -161,8 +159,6 @@ Route::controller(\App\Http\Controllers\UjianGuruController::class)->group(
         Route::delete("/courses/{mapelId}/delete/examination/{ujianId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-examination");
         Route::get("/courses/{mapelId}/penilaian/{ujianId}/examination/{pengerjaanSiswaId}/guru/{guruId}", "detailPengerjaanSiswa")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-penilaian-examination");
         Route::post("/courses/{mapelId}/add/penilaian/{ujianId}/examination/{pengerjaanSiswaId}/guru/{guruId}", "addDataNilai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-add-penilaian-examination");
-//        Route::get("/courses/{mapelId}/detail/{tugasId}/assignment/{pengerjaanTugasId}/guru/{guruId}", "pengerjaanDetail")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-penilaian-guru-assignment");
-//        Route::post("/courses/{mapelId}/detail/post/{tugasId}/assignment/{pengerjaanTugasId}/guru/{guruId}", "addNilaiSiswa")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("add-penilaian-guru-assignment");
     }
 );
 

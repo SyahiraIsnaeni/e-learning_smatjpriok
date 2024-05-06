@@ -183,11 +183,6 @@
                 Tenggat: {{ \Carbon\Carbon::parse($ujian->deadline)->format('j F Y, \p\u\k\u\l H:i') }}
             </p>
             <p
-                class="text-[13px] font-medium md:text-[13.5px] lg:text-sm xl:text-[14.5px] mt-0.5 md:mt-1 leading-relaxed"
-            >
-                Tipe Soal: {{$ujian->tipe}}
-            </p>
-            <p
                 class="text-[13px] sm:text-[13.5px] md:text-sm lg:text-[14.5px] xl:text-[15px] mt-1.5 md:mt-2.5 leading-relaxed"
             >
                 {!! $ujian->deskripsi !!}
