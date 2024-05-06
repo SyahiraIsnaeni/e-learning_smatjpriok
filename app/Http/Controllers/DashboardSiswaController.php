@@ -22,8 +22,11 @@ class DashboardSiswaController extends Controller
         $mapels = $this->mapelService->getMapel($id);
         $totalSukses = $this->mapelService->countTaskSiswa1($id);
         $totalTask = $this->mapelService->countTaskSiswa2($id);
-        $totalSelesai = round(($totalSukses / $totalTask) * 100, 1);
-        $totalBelumSelesai = round(100 - $totalSelesai, 1);
+        if ($totalTask == 0) {
+            $totalSelesai = 0;
+        } else {
+            $totalSelesai = round(($totalSukses / $totalTask) * 100, 1);
+        }
         $firstMateri = $this->mapelService->firstMateri($id);
         $firstTugas = $this->mapelService->firstTugas($id);
         $firstUjian = $this->mapelService->firstUjian($id);

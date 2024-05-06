@@ -73,6 +73,13 @@ Route::controller(\App\Http\Controllers\DashboardGuruController::class)->group(
     }
 );
 
+Route::controller(\App\Http\Controllers\JadwalController::class)->group(
+    function (){
+        Route::get("/penjadwalan/siswa/{siswaId}/{kelasId}", "siswa")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("jadwal-siswa");
+        Route::get("/penjadwalan/guru/{guruId}", "guru")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("jadwal-guru");
+    }
+);
+
 Route::controller(\App\Http\Controllers\DashboardAdminController::class)->group(
     function (){
         Route::get("/dashboard/admin", "index")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("dashboard-admin");

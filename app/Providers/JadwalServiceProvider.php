@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class JadwalServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+
     public array $singletons = [
         JadwalService::class => JadwalServiceImpl::class
     ];

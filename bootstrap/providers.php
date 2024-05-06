@@ -10,6 +10,7 @@ return [
     App\Providers\ForgotPasswordSiswaServiceProvider::class,
     App\Providers\GuruServiceProvider::class,
     App\Providers\JadwalServiceProvider::class,
+    App\Providers\JadwalSiswaServiceProvider::class,
     App\Providers\KelasServiceProvider::class,
     App\Providers\MataPelajaranDetailGuruServiceProvider::class,
     App\Providers\MataPelajaranDetailSiswaServiceProvider::class,
