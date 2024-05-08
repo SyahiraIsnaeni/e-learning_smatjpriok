@@ -121,15 +121,37 @@
 </nav>
 
 <!-- SELAMAT DATANG -->
-<div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
-    <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">
-        Jadwal Mengajar - {{$guru->nama}}
-    </h1>
-    <p
-        class="font-medium leading-relaxed text-[14px] md:text-[15px] lg:text-base xl:text-lg mt-2 xl:mt-3"
-    >
-        Mari lihat jadwalmu untuk meningkatkan aktivitas mengajarmu!
-    </p>
+<div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20 flex">
+    <div>
+        <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">
+            Jadwal Mengajar - {{$guru->nama}}
+        </h1>
+        <p
+            class="font-medium leading-relaxed text-[14px] md:text-[15px] lg:text-base xl:text-lg mt-2 xl:mt-3"
+        >
+            Mari lihat jadwalmu untuk meningkatkan aktivitas mengajarmu!
+        </p>
+    </div>
+    <div class="w-fit ml-auto">
+        <a href="{{route("dashboard-guru", ["id" => $guru->id])}}">
+            <div
+                class="bg-[#EE982B] flex py-2 px-3 lg:py-2.5 lg:px-3.5 rounded-md transition hover:scale-105 hover:duration-300"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512"
+                    class="w-3.5 h-3.5 mt-0.5 md:mt-[3.3px] lg:mt-[2.5px] lg:h-[15px] lg:w-[15px]"
+                >
+                    <path
+                        d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+                    />
+                </svg>
+                <p class=" ml-0.5 lg:ml-1 text-[12.5px] md:text-[13px] lg:text-sm font-semibold">
+                    Kembali
+                </p>
+            </div>
+        </a>
+    </div>
 </div>
 
 <section class="mt-5 md:mt-10 lg:mt-12 mx-5 sm:mx-8 xl:mx-20 lg:mx-10 xl:mt-10 mb-10 ">
