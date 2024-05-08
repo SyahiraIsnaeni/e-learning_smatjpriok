@@ -68,7 +68,7 @@
             >My Profile</a
             >
             <a
-                href="#"
+                href="{{route("tutorial-siswa")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
@@ -107,7 +107,7 @@
             <a href="{{route("profile-siswa", $siswa->id)}}">
                 <p class="hover:text-oren">My Profile</p>
             </a>
-            <a href="#">
+            <a href="{{route("tutorial-siswa")}}">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
             <form action="{{ route('logout-siswa') }}" method="post" >
