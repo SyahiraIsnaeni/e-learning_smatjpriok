@@ -90,8 +90,8 @@ Route::controller(\App\Http\Controllers\DashboardAdminController::class)->group(
 Route::controller(\App\Http\Controllers\TutorialController::class)->group(
     function (){
         Route::get("/tutorial/admin", "admin")->middleware([\App\Http\Middleware\OnlyAdminMiddleware::class])->name("tutorial-admin");
-        Route::delete("/tutorial/guru", "guru")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("tutorial-guru");
-        Route::delete("/tutorial/siswa", "siswa")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("tutorial-siswa");
+        Route::get("/tutorial/guru/{id}", "guru")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("tutorial-guru");
+        Route::get("/tutorial/siswa/{id}", "siswa")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("tutorial-siswa");
     }
 );
 
