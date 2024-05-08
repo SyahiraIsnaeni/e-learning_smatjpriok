@@ -63,7 +63,7 @@
             >My Profile</a
             >
             <a
-                href="#"
+                href="{{route("tutorial-guru")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
@@ -103,7 +103,7 @@
                     My Profile
                 </p>
             </a>
-            <a href="#">
+            <a href="{{route("tutorial-guru")}}">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
             <form action="{{ route('logout-guru') }}" method="post">

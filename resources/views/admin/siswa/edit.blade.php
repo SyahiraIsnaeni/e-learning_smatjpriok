@@ -52,15 +52,16 @@
             >Dashboard</a
             >
             <a
-                href="#"
+                href="{{route("tutorial-admin")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
-            <a
-                href="../login/admin.html"
-                class="text-white py-2.5 block text-center text-sm hover:text-oren"
-            >Logout</a
-            >
+            <form action="{{ route('logout-admin') }}" method="post" style="display: flex; justify-content: center; align-items: center;">
+                @csrf
+                <button type="submit" class="text-center items-center text-white py-2.5 block text-sm hover:text-oren">
+                    Logout
+                </button>
+            </form>
             <!-- Tambahkan navigasi lainnya sesuai kebutuhan -->
         </div>
     </div>
@@ -88,12 +89,15 @@
                     Dashboard
                 </p>
             </a>
-            <a href="#">
+            <a href="{{route("tutorial-admin")}}">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
-            <a href="../login/admin.html">
-                <p class="hover:text-oren">Logout</p>
-            </a>
+            <form action="{{ route('logout-admin') }}" method="post">
+                @csrf
+                <button type="submit">
+                    <span class="hover:text-oren">Logout</span>
+                </button>
+            </form>
         </div>
     </div>
 
@@ -111,7 +115,7 @@
 
 <!-- TITLE -->
 <div class="mx-5 sm:mx-8 lg:mx-10 xl:mx-20">
-    <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">Edit Data Guru</h1>
+    <h1 class="font-bold text-lg lg:text-xl xl:text-2xl">Edit Data Siswa</h1>
 </div>
 
 <section class="mt-5 mb-10 xl:mt-8">
@@ -133,7 +137,7 @@
                         <input value="{{$siswa->kelas->nama_kelas}}" disabled class="mt-1.5 py-1 px-2 lg:py-1.5 w-full rounded-md text-[13px] sm:text-sm lg:text-[14px] xl:text-[15px] border border-black border-opacity-25">
                     </div>
                     <div class="mt-2 md:mt-3 lg:mt-5 rounded-md">
-                        <p class="text-[13.5px] sm:text-sm lg:text-[14.5px] xl:text-base font-medium">Email</p>
+                        <p class="text-[13.5px] sm:text-sm lg:text-[14.5px] xl:text-base font-medium">Email (opsional)</p>
                         <input value="{{$siswa->email}}" name="email" class="mt-1.5 lg:py-1.5 py-1 px-2 text-[13px] sm:text-sm lg:text-[14px] xl:text-[15px] w-full rounded-md border border-black border-opacity-25">
                     </div>
                 </div>

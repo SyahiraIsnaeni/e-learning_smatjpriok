@@ -15,6 +15,18 @@
             background-color: white !important;
         }
     </style>
+    <link
+        rel="stylesheet"
+        href={{asset("../editor/richtexteditor/rte_theme_default.css")}}
+    />
+    <script
+        type="text/javascript"
+        src={{asset("../editor/richtexteditor/rte.js")}}
+    ></script>
+    <script
+        type="text/javascript"
+        src={{asset("../editor/richtexteditor/plugins/all_plugins.js")}}
+    ></script>
 </head>
 <body class="bg-biru-muda font-learn">
 <!-- NAVBAR -->
@@ -63,7 +75,7 @@
             >My Profile</a
             >
             <a
-                href="#"
+                href="{{route("tutorial-guru")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
@@ -99,7 +111,7 @@
             <a href="{{route("profile-guru", $guru->id)}}">
                 <p class="hover:text-oren">My Profile</p>
             </a>
-            <a href="#">
+            <a href="{{route("tutorial-guru")}}">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
             <form action="{{ route('logout-guru') }}" method="post">

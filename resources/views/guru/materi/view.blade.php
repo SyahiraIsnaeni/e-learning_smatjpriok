@@ -63,7 +63,7 @@
             >My Profile</a
             >
             <a
-                href="#"
+                href="{{route("tutorial-guru")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
@@ -99,7 +99,7 @@
             <a href="{{route("profile-guru", $guru->id)}}">
                 <p class="hover:text-oren">My Profile</p>
             </a>
-            <a href="#">
+            <a href="{{route("tutorial-guru")}}">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
             <form action="{{ route('logout-guru') }}" method="post">
@@ -180,27 +180,6 @@
                 </p>
             </div>
         </a>
-
-        <label for="search" class="font-medium text-2xl ml-auto flex rounded-md border-2 border-black border-opacity-25 sm:w-[250px] md:w-[280px] lg:w-[300px] xl:w-[350px] bg-white">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="16"
-                width="16"
-                viewBox="0 0 512 512"
-                class="opacity-50 my-auto ml-2 lg:ml-3"
-            >
-                <path
-                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
-                />
-            </svg>
-            <input
-                class="w-full block text-xs lg:text-[13px] xl:text-sm ml-1 lg:ml-2 rounded-md"
-                type="search"
-                id="search"
-                name="search"
-                placeholder="Cari materi..."
-            />
-        </label>
     </div>
 </section>
 

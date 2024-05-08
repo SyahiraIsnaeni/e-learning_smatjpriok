@@ -52,7 +52,7 @@
             >Dashboard</a
             >
             <a
-                href="#"
+                href="{{route("tutorial-admin")}}"
                 class="text-white py-2.5 block text-center text-sm hover:text-oren"
             >Tutorial</a
             >
@@ -89,7 +89,7 @@
                     Dashboard
                 </p>
             </a>
-            <a href="#">
+            <a href="{{route("tutorial-admin")}}">
                 <p class="hover:text-oren">Tutorial</p>
             </a>
             <form action="{{ route('logout-admin') }}" method="post">
