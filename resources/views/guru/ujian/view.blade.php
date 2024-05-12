@@ -254,7 +254,7 @@
                         id="optionsList{{$row->id}}"
                         class="hidden text-xs lg:text-[12.5px] py-3 bg-white absolute right-0 top-0 border border-black border-opacity-25 mt-12 mr-5 lg:mr-8 p-2 rounded-md shadow-md"
                     >
-                        <a href="{{route('edit-guru-examination', ['mapelId' => $mapel['mapel_id'], 'tugasId' => $row->id, 'guruId' => $guru->id])}}">
+                        <a href="{{route('edit-guru-examination', ['mapelId' => $mapel['mapel_id'], 'ujianId' => $row->id, 'guruId' => $guru->id])}}">
                             <li class="mb-2 px-4 hover:font-bold">Edit</li>
                         </a>
                         <form method="post" action="{{route('delete-guru-data-examination', ['mapelId' => $mapel['mapel_id'], 'ujianId' => $row->id, 'guruId' => $guru->id])}}" class="d-inline">

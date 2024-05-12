@@ -139,6 +139,7 @@ Route::controller(\App\Http\Controllers\TugasGuruController::class)->group(
         Route::get("/courses/add/assignment/{mapelId}/guru/{guruId}", "add")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("add-guru-assignment");
         Route::post("/courses/add/assignment/{mapelId}/guru/{guruId}", "addDataTugas")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("add-guru-data-assignment");
         Route::get("/courses/{mapelId}/assignment/{tugasId}/guru/{guruId}", "detailTugas")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-guru-assignment");
+        Route::get("/courses/{mapelId}/nilai/assignment/{tugasId}/guru/{guruId}", "downloadNilai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-nilai-guru-assignment");
         Route::get("/courses/{mapelId}/edit/assignment/{tugasId}/guru/{guruId}", "edit")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-assignment");
         Route::post("/courses/{mapelId}/edit/assignment/{tugasId}/guru/{guruId}", "editDataTugas")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-data-assignment");
         Route::delete("/courses/{mapelId}/delete/assignment/{tugasId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-assignment");
@@ -162,7 +163,8 @@ Route::controller(\App\Http\Controllers\UjianGuruController::class)->group(
         Route::get("/courses/add/essay/examination/{mapelId}/guru/{guruId}", "addEssai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-add-essay");
         Route::post("/courses/add/data/essay/examination/{mapelId}/guru/{guruId}", "addDataEssai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("course-guru-add-data-essai");
         Route::get("/courses/detail/{mapelId}/examination/{ujianId}/guru/{guruId}", "detailUjian")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-guru-examination");
-        Route::get("/courses/{mapelId}/edit/examination/{tugasId}/guru/{guruId}", "edit")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-examination");
+        Route::get("/courses/{mapelId}/nilai/examination/{ujianId}/guru/{guruId}", "downloadNilai")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-nilai-guru-examination");
+        Route::get("/courses/{mapelId}/edit/examination/{ujianId}/guru/{guruId}", "edit")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-examination");
         Route::post("/courses/{mapelId}/edit/examination/{ujianId}/guru/{guruId}", "editDataUjian")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("edit-guru-data-examination");
         Route::delete("/courses/{mapelId}/delete/examination/{ujianId}/guru/{guruId}", "delete")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("delete-guru-data-examination");
         Route::get("/courses/{mapelId}/penilaian/{ujianId}/examination/{pengerjaanSiswaId}/guru/{guruId}", "detailPengerjaanSiswa")->middleware([\App\Http\Middleware\OnlyTeacherMiddleware::class])->name("detail-penilaian-examination");

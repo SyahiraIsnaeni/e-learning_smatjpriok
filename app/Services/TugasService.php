@@ -19,4 +19,6 @@ interface TugasService
     public function alreadySubmit($pengerjaanId);
 
     public function getAssignDetail($pengerjaanId);
+
+    public function nilai($tugasId);
 }

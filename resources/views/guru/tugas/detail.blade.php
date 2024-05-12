@@ -224,11 +224,18 @@
                 >
                     Pengumpulan Tugas
                 </h1>
-                <p
-                    class="text-xs sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px] font-normal mt-2 sm:mt-0 sm:ml-auto"
-                >
-                    Total Pengumpulan: {{count($tugas->pengerjaanTugas)}} Siswa
-                </p>
+                <div class="sm:ml-auto flex">
+                    <a class="w-fit" href="{{route("detail-nilai-guru-assignment", ["mapelId" => $mapel["mapel_id"], "tugasId" => $tugas->id, "guruId" => $guru->id])}}">
+                        <div class="bg-green-700 px-2.5 py-1.5 hover:scale-105 duration-300 rounded-md mr-5">
+                            <p class="text-white text-xs sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px] font-normal">Export Nilai</p>
+                        </div>
+                    </a>
+                    <p
+                        class="text-xs sm:text-[13px] md:text-[13.5px] lg:text-sm xl:text-[14.5px] font-normal mt-2 pt-1 sm:mt-0 "
+                    >
+                        Total Pengumpulan: {{count($tugas->pengerjaanTugas)}} Siswa
+                    </p>
+                </div>
             </div>
             <!-- TAMPILAN HP -->
             <div class="mt-5 md:hidden">

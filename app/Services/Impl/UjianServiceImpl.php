@@ -2,6 +2,7 @@
 
 namespace App\Services\Impl;
 
+use App\Exports\UjianExport;
 use App\Models\JawabanSiswaUjian;
 use App\Models\OpsiJawabanUjian;
 use App\Models\PengerjaanUjianSiswa;
@@ -13,6 +14,7 @@ use App\Services\UjianService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UjianServiceImpl implements UjianService
 {
@@ -191,7 +193,12 @@ class UjianServiceImpl implements UjianService
         return $previousJawaban ? ['poin' => $previousJawaban->poin] : [];
     }
 
+    public function nilai($ujianId)
+    {
+        $ujian = Ujian::where("id", $ujianId)->first();
+        $namaFile = "ujian_" . str_replace(' ', '_', $ujian->judul) . '.xlsx';
 
-
+        return Excel::download(new UjianExport($ujianId), $namaFile);
+    }
 
 }

@@ -242,6 +242,11 @@ class UjianGuruController extends Controller
     }
 
 
+    public function downloadNilai($mapelId, $ujianId, $guruId)
+    {
+        $this->ujianService->nilai($ujianId);
 
+        return $this->ujianService->nilai($ujianId);
+    }
 
 }

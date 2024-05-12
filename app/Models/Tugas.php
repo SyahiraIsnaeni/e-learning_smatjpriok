@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Tugas extends Model
 {
     use HasFactory;
-
     protected $table = "tugas";
 
     protected $primaryKey = "id";

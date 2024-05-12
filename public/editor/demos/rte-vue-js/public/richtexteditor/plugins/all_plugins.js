@@ -116,7 +116,7 @@ function RTE_Plugin_Html2PDF() {
 					var date = new Date();
 					var ymd = String(date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate()).substring(2);
 					var hms = String(1000000 + date.getHours() * 10000 + date.getMinutes() * 100 + date.getSeconds()).substring(1);
-					pdflink.download = "Export-" + ymd + "-" + hms + ".pdf";
+					pdflink.download = "Exports-" + ymd + "-" + hms + ".pdf";
 
 					//a.rel = 'noopener'
 
@@ -129,7 +129,7 @@ function RTE_Plugin_Html2PDF() {
 					var imglink = __Append(imgrect, "a");
 					imglink.setAttribute("href", imgurl);
 					imglink.setAttribute("target", "_blank");
-					imglink.download = "Export-" + ymd + "-" + hms + ".jpg";
+					imglink.download = "Exports-" + ymd + "-" + hms + ".jpg";
 					imglink.innerText = "Download Img";
 
 					//dialoginner.close();
@@ -205,7 +205,7 @@ function RTE_Plugin_ImageEditor() {
 		parent.appendChild(tag);
 		return tag;
 	}
-	
+
 	function dataURLToBlob(dataurl) {
 		var arr = dataurl.split(',');
 		var mime = arr[0].match(/:(.*?);/)[1];
@@ -930,7 +930,7 @@ function RTE_Plugin_InsertGallery() {
 		parent.appendChild(tag);
 		return tag;
 	}
-	
+
 	obj.DoInsertGallery = function () {
 
 		var dialoginner = editor.createDialog(editor.getLangText("insertgallerytitle"), "rte-dialog-insertgallery");
@@ -1060,4 +1060,4 @@ function RTE_Plugin_InsertTemplate() {
 
 
 
-//END of all_plugins.js 
+//END of all_plugins.js

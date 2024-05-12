@@ -23,4 +23,6 @@ interface UjianService
 
     public function getJawaban($ujianId, $pengerjaanId);
 
+    public function nilai($ujianId);
+
 }

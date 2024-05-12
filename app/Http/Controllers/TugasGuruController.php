@@ -185,4 +185,11 @@ class TugasGuruController extends Controller
         return redirect()->route('detail-guru-assignment',  ['mapelId' => $mapelId, 'tugasId' => $tugasId, 'guruId' => $guruId]);
     }
 
+    public function downloadNilai($mapelId, $tugasId, $guruId)
+    {
+        $this->tugasService->nilai($tugasId);
+
+        return $this->tugasService->nilai($tugasId);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services\Impl;
 
+use App\Exports\TugasExport;
 use App\Models\DokumenTugas;
 use App\Models\DokumenTugasSiswa;
 use App\Models\PengerjaanTugas;
@@ -12,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TugasServiceImpl implements TugasService
 {
@@ -159,6 +161,14 @@ class TugasServiceImpl implements TugasService
         return PengerjaanTugas::where('tugas_id', $tugasId)
             ->where('status', 'dikumpulkan')
             ->count();
+    }
+
+    public function nilai($tugasId)
+    {
+        $tugas = Tugas::where("id", $tugasId)->first();
+        $namaFile = "tugas_" . str_replace(' ', '_', $tugas->judul) . '.xlsx';
+
+        return Excel::download(new TugasExport($tugasId), $namaFile);
     }
 
 }
