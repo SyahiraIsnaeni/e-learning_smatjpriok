@@ -61,8 +61,6 @@ class DashboardAdminController extends Controller
 
             DB::table('pengerjaan_ujian_siswas')->delete();
 
-            DB::table('opsi_jawaban_ujians')->delete();
-
             DB::table('pertanyaan_ujians')->delete();
 
             DB::table('ujians')->delete();
