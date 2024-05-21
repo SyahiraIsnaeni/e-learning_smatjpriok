@@ -16,7 +16,6 @@ class Tugas extends Model
 
     protected $fillable = ['judul', 'deskripsi', 'deadline'];
 
-
     public function mapel(): BelongsTo{
         return $this->belongsTo(MataPelajaran::class, "mapel_id", "id");
     }

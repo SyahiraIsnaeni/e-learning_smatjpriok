@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/test', function () {
-    return view('welcome');
+Route::fallback(function () {
+    return view('not-found');
 });
 
 Route::controller(\App\Http\Controllers\LoginAdminController::class)->group(
@@ -179,7 +179,5 @@ Route::controller(\App\Http\Controllers\UjianSiswaController::class)->group(
         Route::get("/courses/{mapelId}/detail/penilaian/examination/{ujianId}/siswa/{siswaId}", "penilaian")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("detail-penilaian-siswa-examination");
         Route::get("/courses/{mapelId}/detail/begin/examination/{ujianId}/siswa/{siswaId}", "beginExam")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("begin-siswa-examination");
         Route::post("/courses/{mapelId}/assign/{pengerjaanSiswaId}/examination/{ujianId}/siswa/{siswaId}", "assignExam")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("assign-siswa-examination");
-//        Route::post("/courses/{mapelId}/detail/examination/{pengerjaanTugasId}/siswa/{siswaId}", "addTugas")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("add-siswa-examination");
-//        Route::delete("/courses/{mapelId}/detail/examination/{pengerjaanTugasId}/siswa/{siswaId}", "deleteDokumen")->middleware([\App\Http\Middleware\OnlyStudentMiddleware::class])->name("delete-siswa-examination");
     }
 );

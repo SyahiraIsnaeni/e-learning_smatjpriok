@@ -155,11 +155,11 @@ class TugasServiceImpl implements TugasService
     }
 
 
-
     public function alreadySubmit($tugasId)
     {
         return PengerjaanTugas::where('tugas_id', $tugasId)
             ->where('status', 'dikumpulkan')
+            ->orWhere('status', 'telat dikumpulkan')
             ->count();
     }
 

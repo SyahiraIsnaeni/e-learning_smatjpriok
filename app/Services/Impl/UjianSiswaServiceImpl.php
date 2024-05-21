@@ -98,30 +98,4 @@ class UjianSiswaServiceImpl implements UjianSiswaService
         $pengerjaanSiswa->save();
     }
 
-
-
-
-    public function updateStatus($ujianId, $siswaId, $finished_at)
-    {
-        $ujian = Ujian::find($ujianId);
-
-        if ($ujian) {
-            $deadline = $ujian->deadline;
-
-            $pengerjaanSiswa = PengerjaanUjianSiswa::where('ujian_id', $ujianId)
-                ->where('siswa_id', $siswaId)
-                ->first();
-
-            if ($pengerjaanSiswa) {
-                if ($finished_at > $deadline) {
-                    $pengerjaanSiswa->status = "telat dikerjakan";
-                } else {
-                    $pengerjaanSiswa->status = "dikerjakan";
-                }
-
-                $pengerjaanSiswa->save();
-            }
-        }
-    }
-
 }

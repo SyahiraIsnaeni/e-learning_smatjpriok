@@ -7,7 +7,6 @@ return [
     App\Providers\DataSiswaServiceProvider::class,
     App\Providers\GuruServiceProvider::class,
     App\Providers\JadwalServiceProvider::class,
-    App\Providers\KelasServiceProvider::class,
     App\Providers\MataPelajaranDetailGuruServiceProvider::class,
     App\Providers\MataPelajaranDetailSiswaServiceProvider::class,
     App\Providers\MataPelajaranGuruServiceProvider::class,

@@ -209,7 +209,7 @@
         <form action="{{route("detail-add-penilaian-examination", ["mapelId" => $mapel["mapel_id"], "ujianId" => $ujian->id, "pengerjaanSiswaId" => $pengerjaanSiswa->id, "guruId" => $guru->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @foreach($data as $index => $item)
-                <div class="w-full mt-2 mb-4 bg-[#EEE8A9] shadow-sm border border-black border-opacity-30 rounded-md py-4 px-4 sm:px-5 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-7 xl:px-10">
+                <div class="w-full mt-2 mb-4 bg-white shadow-sm border border-black border-opacity-30 rounded-md py-4 px-4 sm:px-5 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-7 xl:px-10">
                     <!-- WAKTU DAN NOMOR SOAL -->
                     <div class="flex">
                         <p class="font-bold text-[13px] md:text-sm lg:text-[15px] xl:text-base">
@@ -221,7 +221,8 @@
                     <p class="mt-3 text-[13.5px] md:text-sm lg:text-[15px] xl:text-base">
                         {!! $item['pertanyaan']->pertanyaan !!}
                     </p>
-                    <div class="mt-4 text-[13.5px]  md:text-sm lg:text-[15px] xl:text-base">
+                    <p class="mt-3 text-[13px] md:text-[13.5px] lg:text-sm font-semibold">Jawaban:</p>
+                    <div class="mt-2 text-[13.5px] md:text-sm lg:text-[15px] xl:text-base">
                         <textarea name="jawaban[{{ $index }}]" placeholder="Jawaban" class=" bg-white w-full text-[13px] md:text-sm lg:text-[15px] h-[100px] border border-black border-opacity-30 rounded-md py-3 px-3" disabled>{{ $item['jawaban'] ? $item['jawaban']->jawaban : '' }}</textarea>
                     </div>
                     <div class="flex mt-4">

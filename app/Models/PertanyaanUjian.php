@@ -22,11 +22,6 @@ class PertanyaanUjian extends Model
         return $this->belongsTo(Ujian::class, "ujian_id", "id");
     }
 
-    public function opsiJawaban(): HasMany
-    {
-        return $this->hasMany(OpsiJawabanUjian::class, "pertanyaan_id", "id");
-    }
-
     public function jawaban(): HasMany{
         return $this->hasMany(JawabanSiswaUjian::class, "pertanyaan_id", "id");
     }

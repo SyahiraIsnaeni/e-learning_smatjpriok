@@ -19,8 +19,4 @@ class MataPelajaranGuruServiceImpl implements MataPelajaranGuruService
         });
     }
 
-    public function getGuru($guruId){
-
-    }
-
 }

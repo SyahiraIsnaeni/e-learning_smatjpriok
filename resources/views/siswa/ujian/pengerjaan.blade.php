@@ -116,7 +116,7 @@
         <form id="examForm" action="{{ route('assign-siswa-examination', ['mapelId' => $mapel["mapel_id"],'pengerjaanSiswaId' => $exam["pengerjaanSiswa"]->id, 'ujianId' => $ujian['ujian']->id, 'siswaId' => $siswa->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @foreach($question as $row)
-                <div class="w-full mt-2 mb-4 bg-[#EEE8A9] shadow-sm border border-black border-opacity-30 rounded-md py-4 px-4 sm:px-5 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-7 xl:px-10">
+                <div class="w-full mt-2 mb-4 bg-white shadow-sm border border-black border-opacity-30 rounded-md py-4 px-4 sm:px-5 sm:py-5 md:px-6 md:py-6 lg:px-8 lg:py-7 xl:px-10">
                     <!-- WAKTU DAN NOMOR SOAL -->
                     <div class="flex">
                         <p class="font-bold text-[13px] md:text-sm lg:text-[15px] xl:text-base">

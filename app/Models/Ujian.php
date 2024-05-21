@@ -15,9 +15,7 @@ class Ujian extends Model
 
     protected $primaryKey = "id";
 
-
-    protected $fillable = ['judul', 'deskripsi', 'deadline', 'durasi', 'tipe'];
-
+    protected $fillable = ['judul', 'deskripsi', 'deadline', 'durasi'];
 
     public function mapel(): BelongsTo{
         return $this->belongsTo(MataPelajaran::class, "mapel_id", "id");
