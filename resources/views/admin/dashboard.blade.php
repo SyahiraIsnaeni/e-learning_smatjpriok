@@ -203,32 +203,29 @@
             </a>
         </div>
 
-        <div
-            class=" ease-in-out duration-300 hover:scale-105"
-        >
-
-
-            <form method="post" action="{{ route("delete-e-learning") }}" class="d-inline">
+        <div class="ease-in-out duration-300 hover:scale-105">
+            <button onclick="showConfirmation()" class="bg-[#FF7272] px-5 sm:px-7 py-6 lg:py-8 lg:px-8 xl:px-9 xl:py-9 rounded-lg bg-opacity-80">
+                <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg text-left">Hapus Data Permanen</h1>
+                <p class="font-normal text-left text-[13px] sm:text-[13.5px] xl:text-[14.5px] xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed">Fitur ini memungkinkan admin dapat menghapus seluruh data sistem e-learning secara permanen.</p>
+                <div class="mt-5 xl:mt-7 flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-5 w-5 mr-1"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
+                    <p class="text-[13px] xl:text-sm font-medium">Gunakan fitur ini dengan bijak</p>
+                </div>
+            </button>
+            <form id="delete-e-learning-form" method="post" action="{{ route("delete-e-learning") }}" class="d-inline">
                 @csrf
                 @method('DELETE')
-                <button
-                    class="bg-[#FF7272] px-5 sm:px-7 py-6 lg:py-8 lg:px-8 xl:px-9 xl:py-9 rounded-lg bg-opacity-80"
-                >
-                    <h1 class="font-semibold text-[16px] lg:text-[17px] xl:text-lg text-left">
-                        Hapus Data Permanen
-                    </h1>
-                    <p
-                        class="font-normal text-left text-[13px] sm:text-[13.5px] xl:text-[14.5px] xl:tracking-normal xl:leading-relaxed xl:mt-2 mt-1.5 leading-relaxed"
-                    >
-                        Fitur ini memungkinkan admin dapat menghapus seluruh data sistem e-learning secara permanen.
-                    </p>
-                    <div class="mt-5 xl:mt-7 flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-5 w-5 mr-1"><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
-                        <p class="text-[13px] xl:text-sm font-medium">Gunakan fitur ini dengan bijak</p>
-                    </div>
-                </button>
             </form>
         </div>
+
+        <script>
+            function showConfirmation() {
+                if (confirm('Anda yakin ingin menghapus seluruh data sistem e-learning secara permanen?')) {
+                    document.getElementById('delete-e-learning-form').submit();
+                }
+            }
+        </script>
+
     </div>
 </section>
 @include('sweetalert::alert')
