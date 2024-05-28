@@ -250,22 +250,35 @@
                     class="mt-3 py-3 lg:py-3.5 px-5 lg:px-10 xl:px-16 flex bg-[#E6F4F1] rounded-md border border-black border-opacity-20"
                 >
                     <p
-                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4"
+                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5"
                     >
                         {{$row2->siswa->nama}}
                     </p>
                     <p
-                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
+                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
                     >
                         @if ($row2->finished_at && $row2->started_at)
                             {{ \Carbon\Carbon::parse($row2->finished_at)->diff(\Carbon\Carbon::parse($row2->started_at))->format('%H:%I:%S') }}
                         @endif
                     </p>
                     <p
-                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/4 text-center"
+                        class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
                     >
                         {{ \Carbon\Carbon::parse($row2->finished_at)->format('j F Y, \p\u\k\u\l H:i') }}
                     </p>
+                    @if($row2->nilai != null)
+                        <p
+                            class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
+                        >
+                            Sudah dinilai
+                        </p>
+                    @else
+                        <p
+                            class="text-[13px] lg:text-[13.5px] xl:text-sm font-medium w-1/5 text-center"
+                        >
+                            belum dinilai
+                        </p>
+                    @endif
                     <a
                         href="{{route("detail-penilaian-examination", ["mapelId" => $mapel["mapel_id"], "ujianId" => $ujian->id, "pengerjaanSiswaId" => $row2->id, "guruId" => $guru->id])}}"
                         class="flex justify-end ml-auto hover:text-[#D78010] hover:font-semibold"

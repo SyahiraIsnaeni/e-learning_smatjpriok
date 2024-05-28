@@ -37,7 +37,7 @@
     <!-- TAMPILAN HP -->
     <div class="md:hidden relative">
         <div class="ml-5 sm:ml-8 flex items-center">
-            <img src="../../../assets/logo.png" class="w-10 my-auto" />
+            <img src="{{asset("images/logo.png")}}" class="w-10 my-auto" />
             <h1
                 class="font-medium text-sm text-white block my-auto ml-2 tracking-normal"
             >
