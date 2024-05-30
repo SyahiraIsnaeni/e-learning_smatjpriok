@@ -270,7 +270,7 @@
                             </div>
                             <div class="form-group lg:w-full" style="margin-top: 10px">
                                 <div class="form-group lg:w-full" style="margin-top: 10px">
-                                <textarea id="inp_editor{{ $key + 1 }}" name="pertanyaan[]">
+                                <textarea id="inp_editor{{ $key + 1 }}" name="pertanyaan[{{ $row->id }}]">
                                                  &lt;p&gt;{{$row->pertanyaan}}&lt;/p&gt;
                                                 </textarea>
                                     <script>
