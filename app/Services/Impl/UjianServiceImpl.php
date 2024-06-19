@@ -136,10 +136,7 @@ class UjianServiceImpl implements UjianService
             $jawabanPertanyaan = null;
 
             foreach ($jawabanSiswa as $jawaban) {
-                if ($jawaban->pertanyaan_id === $pertanyaanItem->id) {
-                    $jawabanPertanyaan = $jawaban;
-                    break;
-                }
+                $jawabanPertanyaan = $jawaban;
             }
 
             $data[] = [

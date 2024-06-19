@@ -16,15 +16,21 @@ class OnlyTeacherMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         if ($request->session()->has("guru")) {
-            return $next($request);
+            $response = $next($request);
+            return $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+                ->header('Pragma', 'no-cache')
+                ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
         }
 
         $guru = Guru::find(Auth::id());
         if ($guru) {
-            return $next($request);
+            $response = $next($request);
+            return $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+                ->header('Pragma', 'no-cache')
+                ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
         }
 
         return redirect('/login/guru');

@@ -14,16 +14,19 @@ class OnlyGuestMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         if ($request->session()->exists("siswa")) {
             return redirect()->route('dashboard-siswa', ['id' => $request->session()->get("siswa")]);
         } elseif ($request->session()->exists("guru")) {
             return redirect()->route('dashboard-guru', ['id' => $request->session()->get("guru")]);
-        }elseif ($request->session()->exists("admin")) {
+        } elseif ($request->session()->exists("admin")) {
             return redirect()->route('dashboard-admin');
         }
 
-        return $next($request);
+        $response = $next($request);
+        return $response->header('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
     }
 }
